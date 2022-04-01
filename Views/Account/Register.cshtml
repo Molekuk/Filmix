@@ -1,0 +1,50 @@
+﻿@model Filmix.ViewModels.Account.RegisterViewModel
+@{
+    ViewBag.Title = "Регистрация";
+}
+<style>
+.super{
+    width:200px;
+    display:flex;
+    justify-content:space-between;
+    flex-direction:column;
+}
+.error{
+    color:#e2431d;
+}
+</style>
+<form method="post" asp-controller="Account" asp-action="Register" >
+    <div asp-validation-summary="ModelOnly"></div>
+
+    <div class="super">
+        <label asp-for="UserName"></label>
+        <input asp-for="UserName"/>
+        <span asp-validation-for="UserName" class="error"></span>
+    </div>
+
+    <div class="super">
+        <label asp-for="Email"></label>
+        <input asp-for="Email"/>
+        <span asp-validation-for="Email"  class="error"></span>
+    </div>
+
+    <div class="super">
+        <label asp-for="DateBirth"></label>
+        <input asp-for="DateBirth"/>
+        <span asp-validation-for="DateBirth"  class="error"></span>
+    </div>
+
+    <div class="super">
+        <label asp-for="Password"></label>
+        <input asp-for="Password"/>
+        <span asp-validation-for="Password"  class="error"></span>
+    </div>
+
+    <div class="super">
+        <label asp-for="PasswordConfirm"></label>
+        <input asp-for="PasswordConfirm"/>
+        <span asp-validation-for="PasswordConfirm"  class="error"></span>
+    </div>
+
+    <input type="submit" value="Зарегестрироваться"/>
+</form>

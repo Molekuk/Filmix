@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Mail;
 using System.Threading.Tasks;
 
 namespace Filmix.Controllers
@@ -15,19 +16,15 @@ namespace Filmix.Controllers
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-
         }
 
         public IActionResult Index()
         {
-            _logger.LogError("Ошибка захода");
+            
             return View();
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+      
 
         
     }
