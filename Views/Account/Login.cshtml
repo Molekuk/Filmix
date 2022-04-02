@@ -1,0 +1,38 @@
+﻿@model Filmix.ViewModels.Account.LoginViewModel
+<h1>Логин</h1>
+
+<style>
+.super{
+    width:200px;
+    display:flex;
+    justify-content:space-between;
+    flex-direction:column;
+}
+.error{
+    color:#e2431d;
+}
+</style>
+
+<form method="post" asp-controller="Account" asp-action="Login" asp-route-returnUrl="@Model.ReturnUrl">
+    <div asp-validation-summary="ModelOnly"></div>
+
+    <div class="super">
+        <label asp-for="Email"></label>
+        <input asp-for="Email"/>
+        <span asp-validation-for="Email" class="error"></span>
+    </div>
+
+    <div class="super">
+        <label asp-for="Password"></label>
+        <input asp-for="Password"/>
+        <span asp-validation-for="Password"  class="error"></span>
+    </div>
+
+
+    <div class="super">
+        <label asp-for="RememberMe"></label>
+        <input asp-for="RememberMe" value="true"/>
+    </div>
+
+    <input type="submit" value="Войти"/>
+</form>

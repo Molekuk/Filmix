@@ -46,12 +46,7 @@ namespace Filmix
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    name:"register",
-                    pattern:"/Register",
-                    defaults: new { controller = "Account",action="Register" });
-
+            { 
                 endpoints.MapDefaultControllerRoute();
             });
         }
