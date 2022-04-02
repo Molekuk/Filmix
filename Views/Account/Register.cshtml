@@ -13,13 +13,14 @@
     color:#e2431d;
 }
 </style>
+
 <form method="post" asp-controller="Account" asp-action="Register" >
     <div asp-validation-summary="ModelOnly"></div>
 
     <div class="super">
-        <label asp-for="UserName"></label>
-        <input asp-for="UserName"/>
-        <span asp-validation-for="UserName" class="error"></span>
+        <label asp-for="Name"></label>
+        <input asp-for="Name"/>
+        <span asp-validation-for="Name" class="error"></span>
     </div>
 
     <div class="super">

@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Folder Include="Managers\" />
-    <Folder Include="Views\Home\" />
   </ItemGroup>
 
   <ItemGroup>

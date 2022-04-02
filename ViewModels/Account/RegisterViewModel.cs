@@ -7,7 +7,7 @@ namespace Filmix.ViewModels.Account
         [Required(ErrorMessage = "Введите имя пользователя")]
         [StringLength(maximumLength:20,MinimumLength =3,ErrorMessage ="Длина имени должна быть от 3 до 20 символов")]
         [Display(Name ="Имя пользователя")]
-        public string UserName { get; set; }
+        public string Name { get; set; }
 
         [Required(ErrorMessage ="Введите Email")]
         [DataType(DataType.EmailAddress)]
