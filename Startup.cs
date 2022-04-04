@@ -1,5 +1,5 @@
-using Filmix.Models;
-using Filmix.Models.Account;
+using Filmix.Managers.Account;
+using Filmix.Models.AccountModels;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,9 +32,20 @@ namespace Filmix
                 options.UseSqlServer(connection);
             });
 
-            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationContext>();
+            services.AddIdentity<User, IdentityRole>(options =>
+            {
+                options.Password.RequiredLength = 8;
+                options.Password.RequireNonAlphanumeric = false; 
+                options.Password.RequireDigit = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireLowercase = false;
+                
+            }).AddEntityFrameworkStores<ApplicationContext>();
 
             services.AddControllersWithViews();
+
+            services.AddScoped<IAccountManager, AccountManager>();
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -42,12 +53,18 @@ namespace Filmix
             app.UseDeveloperExceptionPage();
             app.UseRouting();
 
+            app.UseStaticFiles();
+
             app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
-            { 
-                endpoints.MapDefaultControllerRoute();
+            {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern:"{controller}/{action}/{id?}",
+                    defaults: new { controller="Film",action="Index"}
+                    );
             });
         }
     }

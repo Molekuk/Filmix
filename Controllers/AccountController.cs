@@ -1,5 +1,5 @@
-﻿using Filmix.Models.Account;
-using Filmix.ViewModels.Account;
+﻿using Filmix.Managers.Account;
+using Filmix.Models.AccountModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -8,12 +8,10 @@ namespace Filmix.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly UserManager<User> _userManager;
-        private readonly SignInManager<User> _signInManager;
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
+        private IAccountManager _accountManager;
+        public AccountController(IAccountManager accountManager)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
+            _accountManager = accountManager;
         }
 
         [HttpGet]
@@ -29,22 +27,16 @@ namespace Filmix.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = new User { Email = model.Email, UserName = model.Email, DateBirth = model.DateBirth,Name=model.Name };
-
-                // добавляем пользователя
-                var result = await _userManager.CreateAsync(user, model.Password);
-
+                var result = await _accountManager.Register(model);
                 if (result.Succeeded)
                 {
-                    // установка куки
-                    await _signInManager.SignInAsync(user, false);
                     return RedirectToAction("Index", "Home");
                 }
                 else
                 {
                     foreach (var error in result.Errors)
                     {
-                        ModelState.AddModelError(string.Empty, error.Description);
+                        ModelState.AddModelError("", error.Description);
                     }
                 }
             }
@@ -66,7 +58,7 @@ namespace Filmix.Controllers
         {
             if(ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+                var result = await _accountManager.SignIn(model);
                 if (result.Succeeded)
                 {
                     if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
@@ -90,7 +82,7 @@ namespace Filmix.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
-            await _signInManager.SignOutAsync();
+            await _accountManager.SignOut();
             return RedirectToAction("Index", "Home");
         }
     }

@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Главная";
+}
+
+
+
+<body>
+    @if(User.Identity.IsAuthenticated)
+    {
+        <h3 style="color:white">Привет @User.Identity.Name</h3>
+        <form method="post" asp-controller="Account" asp-action="Logout">
+            <input type="submit" value="Выход" />
+        </form>
+    }
+    else
+    {
+        <div class="act_button_handler">
+            <a asp-controller="Account" asp-action="Register" class="act_button">Регистрация</a>
+            <a asp-controller="Account" asp-action="Login" class="act_button">Логин</a>
+        </div>
+    }
+</body>
+
+   
+

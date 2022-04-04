@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
-namespace Filmix.Models.Account
+namespace Filmix.Models.AccountModels
 {
     public class User:IdentityUser
     {

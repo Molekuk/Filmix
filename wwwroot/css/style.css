@@ -1,0 +1,21 @@
+﻿body{
+    background-image:url(/img/background.jpg);
+    background-repeat:no-repeat;
+    background-size:cover;
+}
+
+.act_button_handler{
+    display:flex;
+    justify-content:space-between;
+    width:300px;
+}
+
+.act_button{
+    color:aliceblue;
+    text-decoration:none;
+    font-size:xx-large;
+}
+
+.act_button:hover{
+    color:red;
+}

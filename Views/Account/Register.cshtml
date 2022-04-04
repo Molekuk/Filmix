@@ -1,4 +1,4 @@
-﻿@model Filmix.ViewModels.Account.RegisterViewModel
+﻿@model Filmix.Models.AccountModels.RegisterViewModel
 @{
     ViewBag.Title = "Регистрация";
 }
@@ -12,40 +12,48 @@
 .error{
     color:#e2431d;
 }
+.text{
+    color:white;
+}
 </style>
 
 <form method="post" asp-controller="Account" asp-action="Register" >
-    <div asp-validation-summary="ModelOnly"></div>
+    <div asp-validation-summary="ModelOnly" class="error"></div>
 
     <div class="super">
-        <label asp-for="Name"></label>
+        <label asp-for="Name" class="text"></label>
         <input asp-for="Name"/>
         <span asp-validation-for="Name" class="error"></span>
     </div>
 
     <div class="super">
-        <label asp-for="Email"></label>
+        <label asp-for="Email" class="text"></label>
         <input asp-for="Email"/>
         <span asp-validation-for="Email"  class="error"></span>
     </div>
 
     <div class="super">
-        <label asp-for="DateBirth"></label>
+        <label asp-for="DateBirth" class="text"></label>
         <input asp-for="DateBirth"/>
         <span asp-validation-for="DateBirth"  class="error"></span>
     </div>
 
     <div class="super">
-        <label asp-for="Password"></label>
+        <label asp-for="Password" class="text"></label>
         <input asp-for="Password"/>
         <span asp-validation-for="Password"  class="error"></span>
     </div>
 
     <div class="super">
-        <label asp-for="PasswordConfirm"></label>
+        <label asp-for="PasswordConfirm" class="text"></label>
         <input asp-for="PasswordConfirm"/>
         <span asp-validation-for="PasswordConfirm"  class="error"></span>
     </div>
 
     <input type="submit" value="Зарегестрироваться"/>
 </form>
+
+<div>
+   <h3>Уже зарегестрированы? Войдите</h3>
+   <a asp-action="Login" asp-controller="Account" >Войти</a>
+</div>
