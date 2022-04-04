@@ -13,12 +13,11 @@ namespace Filmix.Controllers
 {
     public class FilmController : Controller
     {
-        private readonly ILogger<FilmController> _logger;
         private readonly IFilmManager _filmManager;
 
-        public FilmController(ILogger<FilmController> logger)
+        public FilmController(IFilmManager filmManager)
         {
-            _logger = logger;
+            _filmManager = filmManager;
         }
 
         public async Task<IActionResult> Index()

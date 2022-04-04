@@ -11,6 +11,6 @@ namespace Filmix.Models.GenreModels
         public string Image { get; set; }
         public string BackgroundImage { get; set; }
 
-        public List<Film> Films { get; set; }
+        public  List<Film> Films { get; set; }
     }
 }

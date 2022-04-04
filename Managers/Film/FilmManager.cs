@@ -20,9 +20,21 @@ namespace Filmix.Managers.Films
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IList<Film>> GetFilmsAsync()
+        public async Task<Film> FindFilmAsync(int id)
         {
-           return await _context.Films.ToListAsync();
+            return await _context.Films.FindAsync(id);
+        }
+
+        public async Task<IEnumerable<FilmViewModel>> GetFilmsAsync()
+        {
+            return await _context.Films.Select(f=>new FilmViewModel
+            {
+                Name = f.Name,
+                Year = f.Year,
+                Rating = f.Rating,
+                Genre = f.Genre.Name,
+                Image =f.Image
+            }).ToListAsync();
         }
     }
 }
