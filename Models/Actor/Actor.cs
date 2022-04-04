@@ -24,7 +24,7 @@ namespace Filmix.Models.ActorModels
 
         public int FilmCount { get; set; }
 
-        public List<Film> Films { get; set; } 
+        public  List<Film> Films { get; set; } 
     
     }
 }

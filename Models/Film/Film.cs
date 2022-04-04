@@ -25,8 +25,8 @@ namespace Filmix.Models.FilmModels
 
         public int GenreId { get; set; }
         [ForeignKey("GenreId")]
-        public Genre Genre { get; set; }
+        public virtual Genre Genre { get; set; }
 
-        public List<Actor> Actors { get; set; }
+        public  List<Actor> Actors { get; set; }
     }
 }

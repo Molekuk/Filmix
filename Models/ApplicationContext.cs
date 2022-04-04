@@ -14,8 +14,11 @@ namespace Filmix
         public DbSet<Genre> Genres { get; set; }
         public ApplicationContext(DbContextOptions<ApplicationContext> options):base(options)
         {
-            Database.EnsureDeleted();
             Database.EnsureCreated();
         }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+        }
+
     }
 }
