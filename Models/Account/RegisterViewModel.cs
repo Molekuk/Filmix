@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Filmix.ViewModels.Account
+namespace Filmix.Models.AccountModels
 {
     public class RegisterViewModel
     {

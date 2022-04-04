@@ -1,38 +1,23 @@
-﻿@model Filmix.ViewModels.Account.LoginViewModel
-<h1>Логин</h1>
+﻿@model Filmix.Models.AccountModels.LoginViewModel
 
-<style>
-.super{
-    width:200px;
-    display:flex;
-    justify-content:space-between;
-    flex-direction:column;
-}
-.error{
-    color:#e2431d;
-}
-</style>
+<link rel="stylesheet" href="~/css/login.css" >
+<div>
+    <h1>Вход в систему</h1>
+    <form method="post" asp-controller="Account" asp-action="Login" asp-route-returnUrl="@Model.ReturnUrl">
+        <div asp-validation-summary="ModelOnly" ></div>
 
-<form method="post" asp-controller="Account" asp-action="Login" asp-route-returnUrl="@Model.ReturnUrl">
-    <div asp-validation-summary="ModelOnly"></div>
+        <div>
+            <label asp-for="Email" class="text"></label>
+            <input asp-for="Email"/>
+            <span asp-validation-for="Email" ></span>
+        </div>
 
-    <div class="super">
-        <label asp-for="Email"></label>
-        <input asp-for="Email"/>
-        <span asp-validation-for="Email" class="error"></span>
-    </div>
+        <div>
+            <label asp-for="Password" class="text"></label>
+            <input asp-for="Password"/>
+            <span asp-validation-for="Password"  ></span>
+        </div>
 
-    <div class="super">
-        <label asp-for="Password"></label>
-        <input asp-for="Password"/>
-        <span asp-validation-for="Password"  class="error"></span>
-    </div>
-
-
-    <div class="super">
-        <label asp-for="RememberMe"></label>
-        <input asp-for="RememberMe" value="true"/>
-    </div>
-
-    <input type="submit" value="Войти"/>
-</form>
+        <input type="submit" value="Войти" class="send_button"/>
+    </form>
+</div>
