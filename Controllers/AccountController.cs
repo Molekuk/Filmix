@@ -8,7 +8,7 @@ namespace Filmix.Controllers
 {
     public class AccountController : Controller
     {
-        private IAccountManager _accountManager;
+        private readonly IAccountManager _accountManager;
         public AccountController(IAccountManager accountManager)
         {
             _accountManager = accountManager;

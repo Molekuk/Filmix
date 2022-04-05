@@ -33,6 +33,7 @@ namespace Filmix.Managers.Account
                 }
             }
             return result;
+
         }
 
         public async Task<SignInResult> SignIn(LoginViewModel model)

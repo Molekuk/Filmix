@@ -12,5 +12,6 @@ namespace Filmix.Models.AccountModels
         [Required]
         [MaxLength(10)]
         public string DateBirth { get; set; }
+
     }
 }

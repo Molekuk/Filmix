@@ -6,9 +6,17 @@ namespace Filmix.Managers.Films
 {
     public interface IFilmManager
     {
-        Task<IEnumerable<FilmViewModel>> GetFilmsAsync();
+        Task<IEnumerable<FilmViewModel>> GetFilmsViewModelAsync();
 
-        Task<Film> FindFilmAsync(int id);
-        Task AddFilmAsync(Film film);
+        Task<IEnumerable<Film>> GetFilmsAsync();
+
+
+        Task<Film> FindAsync(int id);
+
+        Task AddAsync(Film film);
+
+        Task UpdateAsync(Film film);
+
+        Task DeleteAsync(int id);
     }
 }
