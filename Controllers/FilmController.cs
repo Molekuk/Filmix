@@ -27,8 +27,18 @@ namespace Filmix.Controllers
             return View();
         }
 
-      
+        public async Task<IActionResult> AddFilm()
+        {
+            
+            return View();
+        }
 
-        
+        [HttpPost]
+        public async Task<IActionResult> AddFilm(Film film)
+        {
+            await _filmManager.AddFilmAsync(film);
+            return Content("Фильм успешно добавлен");
+        }
+
     }
 }

@@ -1,4 +1,5 @@
 using Filmix.Managers.Account;
+using Filmix.Managers.Actors;
 using Filmix.Managers.Films;
 using Filmix.Models.AccountModels;
 using Microsoft.AspNetCore.Builder;
@@ -46,6 +47,8 @@ namespace Filmix
             services.AddControllersWithViews();
 
             services.AddScoped<IAccountManager, AccountManager>();
+            services.AddScoped<IFilmManager, FilmManager>();
+            services.AddScoped<IActorManager, FilmManager>();
             services.AddScoped<IFilmManager, FilmManager>();
 
 
