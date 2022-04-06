@@ -7,6 +7,8 @@ namespace Filmix.Models.ActorModels
     public class Actor
     {
         public int Id { get; set; }
+
+        [Required]
         public string Name { get; set; }
 
         public string Slug { get; set; }
@@ -17,7 +19,6 @@ namespace Filmix.Models.ActorModels
 
         public string PlaceBirth { get; set; }
 
-        [MaxLength(250)]
         public byte Height { get; set; }
 
         public string Genres { get; set; }

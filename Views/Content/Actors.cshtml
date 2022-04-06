@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Filmix.Models.ActorModels.Actor>
+
+
+<h1>Редактор актеров</h1>
+<div>
+    <table class="table">
+        <thead>
+             <tr>
+                <th>Id</th>
+                <th>Имя</th>
+                <th>Slug</th>
+                <th>Изображение</th>
+                <th>Дата рождения</th>
+                <th>Место рождения</th>
+                <th>Рост</th>
+                <th>Жанры</th>
+                <th>Кол-во фильмов</th>
+                <th>Фильмы</th>
+             </tr>
+        </thead>
+        @foreach(var actor in Model)
+        {
+            <tr>
+                <td>@actor.Id</td>
+                <td>@actor.Name</td>
+                <td>@actor.Slug</td>
+                <td>@actor.Image</td>
+                <td>@actor.DateBirth</td>
+                <td>@actor.PlaceBirth</td>
+                <td>@actor.Height</td>
+                <td>@actor.Genres</td>
+                <td>@actor.FilmCount</td>
+                <td>
+                    @foreach(var film in @actor.Films)
+                    {
+                        <p>@film.Name</p>
+                    }
+                </td>
+                <td><a asp-action="EditActor" asp-route-id="@actor.Id" class="edit_button">Редактировать</a></td>
+            </tr>
+        }
+
+    </table>
+</div>

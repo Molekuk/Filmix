@@ -15,8 +15,11 @@ namespace Filmix.Managers.Actors
 
         public async Task<Actor> FindAsync(int id)
         {
-            return await _context.Actors.FindAsync(id);
+            return await _context.Actors.Include(a=>a.Films).FirstOrDefaultAsync(a=>a.Id==id);
         }
+
+      
+
         public async Task AddAsync(Actor actor)
         {
             _context.Actors.Add(actor);
@@ -33,7 +36,7 @@ namespace Filmix.Managers.Actors
 
         public async Task<IEnumerable<Actor>> GetActorsAsync()
         {
-            return await _context.Actors.ToListAsync();
+            return await _context.Actors.Include(a=>a.Films).ToListAsync();
         }
 
         public async Task UpdateAsync(Actor actor)

@@ -30,7 +30,7 @@ namespace Filmix.Controllers
                 var result = await _accountManager.Register(model);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Film");
                 }
                 else
                 {
@@ -67,7 +67,7 @@ namespace Filmix.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Film");
                     }
                 }
                 else
@@ -83,7 +83,7 @@ namespace Filmix.Controllers
         public async Task<IActionResult> Logout()
         {
             await _accountManager.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Film");
         }
     }
 }
