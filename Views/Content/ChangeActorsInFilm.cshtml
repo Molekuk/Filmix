@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Filmix.Models.FilmModels.ChangeActorViewModel>
+
+<h1>Добавление актеров для фильма @ViewBag.Name</h1>
+<form method="post" asp-action="ChangeActorsInFilm" asp-controller="Content" asp-route-FilmId="@ViewBag.Id">
+    @foreach(var actor in Model)
+    {
+        <div>
+            @if(actor.IsInFilm)
+            {
+                <input id="@actor.ActorId" type="checkbox" name="ContainsActorId" value="@actor.ActorId" checked="checked"/>
+            }
+            else
+            {
+                <input id="@actor.ActorId" type="checkbox" name="ContainsActorId" value="@actor.ActorId"/>  
+            }
+            <label for="@actor.ActorId">@actor.ActorName</label>
+        </div>
+    }
+    <input type="submit" value="Сохранить"/>
+</form>
