@@ -1,4 +1,6 @@
-﻿.table {
+﻿/*#region Таблица*/
+
+.table {
     border: 1px solid #eee;
     table-layout: fixed;
     width: 100%;
@@ -26,12 +28,62 @@
         background: #F7F7F7;
 }
 
+.table tbody tr:hover {
+        background: #f9ca8a;
+        transition: 3s;
+        cursor:pointer;
+}
 
-.edit_button{
-    text-decoration:none;
+
+.description {
+    display:-webkit-box;
+    -webkit-line-clamp: 8;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/*#endregion*/
+
+/*#region Кнопка редактирования*/
+.edit_button {
+    text-decoration: none;
+    color: #3961c8;
 }
 
 .edit_button:hover {
-        color: crimson;
+        color: red;
         transition-duration: 0.6s;
 }
+/*#endregion*/
+
+/*#region Форма изменения данных*/
+.form{
+    float:left;
+}
+
+.form_field{
+    clear:both;
+    text-align:right;
+    line-height:30px;
+}
+
+.form_field label{
+    float:left;
+    padding-right:30px;
+}
+
+.form_description{
+    position:absolute;
+    margin-left:20%;
+}
+    .form_description textarea {
+        resize:none;
+        width: 481px;
+        height: 260px;
+    }
+
+
+/*#endregion*/
+
+

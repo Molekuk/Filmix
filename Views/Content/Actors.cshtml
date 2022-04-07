@@ -6,7 +6,6 @@
     <table class="table">
         <thead>
              <tr>
-                <th>Id</th>
                 <th>Имя</th>
                 <th>Slug</th>
                 <th>Изображение</th>
@@ -20,8 +19,7 @@
         </thead>
         @foreach(var actor in Model)
         {
-            <tr>
-                <td>@actor.Id</td>
+            <tr onclick="window.location.href='/Content/EditActor/@actor.Id';return false">
                 <td>@actor.Name</td>
                 <td>@actor.Slug</td>
                 <td>@actor.Image</td>
@@ -36,9 +34,9 @@
                         <p>@film.Name</p>
                     }
                 </td>
-                <td><a asp-action="EditActor" asp-route-id="@actor.Id" class="edit_button">Редактировать</a></td>
             </tr>
         }
 
     </table>
+    <a asp-action="AddActor" asp-controller="Content">Добавить актера</a>
 </div>

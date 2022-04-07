@@ -1,4 +1,5 @@
-﻿using Filmix.Models.GenreModels;
+﻿using Filmix.Models.FilmModels;
+using Filmix.Models.GenreModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -15,6 +16,9 @@ namespace Filmix.Managers.Genres
 
         Task UpdateAsync(Genre genre);
 
+        Task AddFilmToGenreAsync(int GenreId, IList<int> ContainsFilmId);
+
+        public Task<IEnumerable<AddFilmViewModel>> GetFilmsAddViewModelAsync(Genre genre);
         Task DeleteAsync(int id);
     }
 }

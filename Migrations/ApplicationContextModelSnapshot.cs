@@ -34,6 +34,21 @@ namespace Filmix.Migrations
                     b.ToTable("ActorFilm");
                 });
 
+            modelBuilder.Entity("FilmGenre", b =>
+                {
+                    b.Property<int>("FilmsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GenresId")
+                        .HasColumnType("int");
+
+                    b.HasKey("FilmsId", "GenresId");
+
+                    b.HasIndex("GenresId");
+
+                    b.ToTable("FilmGenre");
+                });
+
             modelBuilder.Entity("Filmix.Models.AccountModels.User", b =>
                 {
                     b.Property<string>("Id")
@@ -45,11 +60,6 @@ namespace Filmix.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DateBirth")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
@@ -126,13 +136,13 @@ namespace Filmix.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<byte>("Height")
-                        .HasMaxLength(250)
                         .HasColumnType("tinyint");
 
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PlaceBirth")
@@ -166,9 +176,6 @@ namespace Filmix.Migrations
                         .HasMaxLength(8)
                         .HasColumnType("nvarchar(8)");
 
-                    b.Property<int>("GenreId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
@@ -189,8 +196,6 @@ namespace Filmix.Migrations
                         .HasColumnType("nvarchar(4)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("GenreId");
 
                     b.ToTable("Films");
                 });
@@ -365,15 +370,19 @@ namespace Filmix.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Filmix.Models.FilmModels.Film", b =>
+            modelBuilder.Entity("FilmGenre", b =>
                 {
-                    b.HasOne("Filmix.Models.GenreModels.Genre", "Genre")
-                        .WithMany("Films")
-                        .HasForeignKey("GenreId")
+                    b.HasOne("Filmix.Models.FilmModels.Film", null)
+                        .WithMany()
+                        .HasForeignKey("FilmsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Genre");
+                    b.HasOne("Filmix.Models.GenreModels.Genre", null)
+                        .WithMany()
+                        .HasForeignKey("GenresId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -425,11 +434,6 @@ namespace Filmix.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Filmix.Models.GenreModels.Genre", b =>
-                {
-                    b.Navigation("Films");
                 });
 #pragma warning restore 612, 618
         }

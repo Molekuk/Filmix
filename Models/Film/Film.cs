@@ -23,9 +23,7 @@ namespace Filmix.Models.FilmModels
         [MaxLength(4)]
         public string Year { get; set; }
 
-        public int GenreId { get; set; }
-        [ForeignKey("GenreId")]
-        public virtual Genre Genre { get; set; }
+        public  List<Genre> Genres { get; set; }
 
         public  List<Actor> Actors { get; set; }
     }

@@ -22,7 +22,7 @@ namespace Filmix.Managers.Films
 
         public async Task<IEnumerable<Film>> GetFilmsAsync()
         {
-            return await _context.Films.ToListAsync();
+            return await _context.Films.Include(f=>f.Actors).Include(f=>f.Genres).ToListAsync();
         }
 
         public async Task<IEnumerable<FilmViewModel>> GetFilmsViewModelAsync()
@@ -32,7 +32,7 @@ namespace Filmix.Managers.Films
                 Name = f.Name,
                 Year = f.Year,
                 Rating = f.Rating,
-                Genre = f.Genre.Name,
+                Genres = f.Genres.Select(g=>g.Name), 
                 Image =f.Image
             }).ToListAsync();
         }

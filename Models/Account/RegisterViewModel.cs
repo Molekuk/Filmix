@@ -29,9 +29,6 @@ namespace Filmix.Models.AccountModels
         [Display(Name = "Подтвердить пароль")]
         public string PasswordConfirm { get; set; }
 
-        [Required(ErrorMessage = "Введите дату рождения")]
-        [Display(Name = "Дата рождения")]
-        [DataType(DataType.Date)]
-        public string DateBirth { get; set; }
+
     }
 }

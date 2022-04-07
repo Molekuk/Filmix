@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Filmix.Models.AccountModels
@@ -8,10 +9,7 @@ namespace Filmix.Models.AccountModels
         [Required]
         [MaxLength(30)]
         public string Name { get; set; }
-
-        [Required]
-        [MaxLength(10)]
-        public string DateBirth { get; set; }
+        
 
     }
 }
