@@ -1,6 +1,6 @@
 ﻿namespace Filmix.Models.GenreModels
 {
-    public class AddFilmViewModel
+    public class ChangeFilmViewModel
     {
         public int FilmId { get; set; }
         public string FilmName { get; set; }

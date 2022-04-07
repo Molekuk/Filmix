@@ -17,7 +17,7 @@ namespace Filmix.Managers.Films
 
         public async Task<Film> FindAsync(int id)
         {
-            return await _context.Films.FindAsync(id);
+            return await _context.Films.Include(f=>f.Actors).FirstOrDefaultAsync(f=>f.Id==id);
         }
 
         public async Task<IEnumerable<Film>> GetFilmsAsync()
@@ -56,7 +56,30 @@ namespace Filmix.Managers.Films
             await _context.SaveChangesAsync();
         }
 
+        public async Task AddActorsToFilmAsync(int FilmId, IList<int> ActorIdList)
+        {
+            var film = await FindAsync(FilmId);
+            var actors = await _context.Actors.ToListAsync();
 
+            if(film.Actors.Any())
+                film.Actors.Clear();
 
+            foreach(var id in ActorIdList)
+            {
+                film.Actors.Add(actors[id-1]);
+            }
+
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<ChangeActorViewModel>> GetChangeFilmsViewModelAsync(Film film)
+        {
+            return await _context.Actors.Select(a => new ChangeActorViewModel
+            {
+                ActorId = a.Id,
+                ActorName = a.Name,
+                IsInFilm = film.Actors.Contains(a)
+            }).ToListAsync();
+        }
     }
 }

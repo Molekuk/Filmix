@@ -100,6 +100,27 @@ namespace Filmix.Controllers
             return Content("Фильм успешно добавлен!");
         }
 
+        public async Task<IActionResult> ChangeActorsInFilm(int? FilmId)
+        {
+            if (FilmId is null)
+                return Content("Не указан Id фильма");
+
+            var film = await _filmManager.FindAsync(FilmId.Value);
+            var actors = await _filmManager.GetChangeFilmsViewModelAsync(film);
+
+            ViewBag.Id = film.Id;
+            ViewBag.Name = film.Name;
+
+            return View(actors);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangeActorsInFilm(int FilmId, IList<int> ContainsActorId)
+        {
+            await _filmManager.AddActorsToFilmAsync(FilmId, ContainsActorId);
+            return Content("Актеры фильма успешно изменены");
+        }
+
         #endregion
 
         #region Жанры
@@ -140,10 +161,10 @@ namespace Filmix.Controllers
         public async Task<IActionResult> ChangeFilmsInGenre(int? GenreId)
         {
             if (GenreId is null)
-                return Content("Не указать Id жанра");
+                return Content("Не указан Id жанра");
 
             var genre = await _genreManager.FindAsync(GenreId.Value);
-            var films = await _genreManager.GetFilmsAddViewModelAsync(genre);
+            var films = await _genreManager.GetChangeFilmsViewModelAsync(genre);
 
             ViewBag.Id=genre.Id;
             ViewBag.Name=genre.Name;
