@@ -16,7 +16,7 @@ namespace Filmix.Managers.Account
 
         public async Task<IdentityResult> Register(RegisterViewModel model)
         {
-            User user = new User { Email=model.Email,UserName=model.Email, Name = model.Name,DateBirth = model.DateBirth };
+            User user = new User { Email=model.Email,UserName=model.Email, Name = model.Name};
             var result = await _userManager.CreateAsync(user,model.Password);
 
             if(result.Succeeded)

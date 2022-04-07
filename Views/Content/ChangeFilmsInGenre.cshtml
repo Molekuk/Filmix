@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Filmix.Models.GenreModels.AddFilmViewModel>
+
+<h1>Добавление фильмов для жанра @ViewBag.Name</h1>
+<form method="post" asp-action="ChangeFilmsInGenre" asp-controller="Content" asp-route-GenreId="@ViewBag.Id">
+    @foreach(var film in Model)
+    {
+        <div>
+            @if(film.IsInGenre)
+            {
+                <input id="@film.FilmId" type="checkbox" name="ContainsFilmId" value="@film.FilmId" checked="checked"/>
+            }
+            else
+            {
+                <input id="@film.FilmId" type="checkbox" name="ContainsFilmId" value="@film.FilmId"/>  
+            }
+            <label for="@film.FilmId">@film.FilmName</label>
+        </div>
+    }
+    <input type="submit" value="Сохранить"/>
+</form>

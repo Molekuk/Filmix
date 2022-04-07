@@ -18,7 +18,7 @@ namespace Filmix.Managers.Actors
             return await _context.Actors.Include(a=>a.Films).FirstOrDefaultAsync(a=>a.Id==id);
         }
 
-      
+        
 
         public async Task AddAsync(Actor actor)
         {

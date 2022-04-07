@@ -1,0 +1,29 @@
+﻿@model Filmix.Models.GenreModels.Genre
+
+<form method="post" asp-action="AddGenre" asp-controller="Content" class="form">
+    <div class="form_field">
+        <label asp-for="Name"></label>
+        <input asp-for="Name"/>
+        <span asp-validation-for="Name"></span>
+    </div>
+    
+    <div class="form_field">
+        <label asp-for="Slug"></label>
+        <input asp-for="Slug"/>
+        <span asp-validation-for="Slug"></span>
+    </div>
+
+    <div class="form_field">
+        <label asp-for="Image"></label>
+        <input asp-for="Image"/>
+        <span asp-validation-for="Image"></span>
+    </div>
+
+    <div class="form_field">
+        <label asp-for="BackgroundImage"></label>
+        <input asp-for="BackgroundImage"/>
+        <span asp-validation-for="BackgroundImage"></span>
+    </div class="form_field">    
+
+    <input type="submit" value="Сохранить"/>
+</form>

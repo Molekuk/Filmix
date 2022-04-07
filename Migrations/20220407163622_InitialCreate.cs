@@ -13,12 +13,12 @@ namespace Filmix.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Slug = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateBirth = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PlaceBirth = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Height = table.Column<byte>(type: "tinyint", maxLength: 250, nullable: false),
+                    Height = table.Column<byte>(type: "tinyint", nullable: false),
                     Genres = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FilmCount = table.Column<int>(type: "int", nullable: false)
                 },
@@ -47,7 +47,6 @@ namespace Filmix.Migrations
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    DateBirth = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -66,6 +65,28 @@ namespace Filmix.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Films",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Slug = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Duration = table.Column<string>(type: "nvarchar(8)", maxLength: 8, nullable: true),
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Producer = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Company = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Rating = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Year = table.Column<string>(type: "nvarchar(4)", maxLength: 4, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Films", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -191,35 +212,6 @@ namespace Filmix.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Films",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Slug = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Duration = table.Column<string>(type: "nvarchar(8)", maxLength: 8, nullable: true),
-                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Producer = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Company = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Rating = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Year = table.Column<string>(type: "nvarchar(4)", maxLength: 4, nullable: true),
-                    GenreId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Films", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Films_Genres_GenreId",
-                        column: x => x.GenreId,
-                        principalTable: "Genres",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "ActorFilm",
                 columns: table => new
                 {
@@ -239,6 +231,30 @@ namespace Filmix.Migrations
                         name: "FK_ActorFilm_Films_FilmsId",
                         column: x => x.FilmsId,
                         principalTable: "Films",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FilmGenre",
+                columns: table => new
+                {
+                    FilmsId = table.Column<int>(type: "int", nullable: false),
+                    GenresId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FilmGenre", x => new { x.FilmsId, x.GenresId });
+                    table.ForeignKey(
+                        name: "FK_FilmGenre_Films_FilmsId",
+                        column: x => x.FilmsId,
+                        principalTable: "Films",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_FilmGenre_Genres_GenresId",
+                        column: x => x.GenresId,
+                        principalTable: "Genres",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -288,9 +304,9 @@ namespace Filmix.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Films_GenreId",
-                table: "Films",
-                column: "GenreId");
+                name: "IX_FilmGenre_GenresId",
+                table: "FilmGenre",
+                column: "GenresId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -314,16 +330,19 @@ namespace Filmix.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Actors");
+                name: "FilmGenre");
 
             migrationBuilder.DropTable(
-                name: "Films");
+                name: "Actors");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Films");
 
             migrationBuilder.DropTable(
                 name: "Genres");

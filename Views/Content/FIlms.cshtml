@@ -1,3 +1,58 @@
-﻿
+﻿@model IEnumerable<Filmix.Models.FilmModels.Film>
+
 
 <h1>Редактор фильмов</h1>
+<div>
+    <table class="table">
+        <thead>
+             <tr>
+                <th>Имя</th>
+                <th>Slug</th>
+                <th>Изображение</th>
+                <th>Длительность</th>
+                <th>Описание</th>
+                <th>Страна</th>
+                <th>Режиссёр</th>
+                <th>Кинокомпания</th>
+                <th>Рейтинг</th>
+                <th>Год выхода</th>
+                <th>Жанры</th>
+                <th>Актеры</th>
+             </tr>
+        </thead>
+
+        @foreach(var film in Model)
+        {
+            <tr onclick="window.location.href='/Content/EditFilm/@film.Id';return false">
+                <td>@film.Name</td>
+                <td>@film.Slug</td>
+                <td>@film.Image</td>
+                <td>@film.Duration</td>
+                <td class="description">@film.Description</td>
+                <td>@film.Country</td>
+                <td>@film.Producer</td>
+                <td>@film.Company</td>
+                <td>@film.Rating</td>
+                <td>@film.Year</td>
+
+                <td>
+                    @foreach(var genre in film.Genres)
+                    {
+                        <p>@genre.Name</p>
+                    }
+                </td>
+
+                <td>
+                    @foreach(var actor in film.Actors)
+                    {
+                        <p>@actor.Name</p>
+                    }
+                </td>
+            </tr>
+            
+        }
+
+    </table>
+    <a asp-action="AddFilm" asp-controller="Content">Добавить фильм</a>
+</div>
+

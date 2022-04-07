@@ -1,4 +1,6 @@
-﻿namespace Filmix.Models.FilmModels
+﻿using System.Collections.Generic;
+
+namespace Filmix.Models.FilmModels
 {
     public class FilmViewModel
     {
@@ -8,7 +10,7 @@
 
         public decimal Rating { get; set; }
 
-        public string Genre { get; set; }
+        public IEnumerable<string> Genres { get; set; }
 
         public string Image { get; set; }
     }
