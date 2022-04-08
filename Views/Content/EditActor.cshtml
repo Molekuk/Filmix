@@ -1,5 +1,7 @@
 ﻿@model Filmix.Models.ActorModels.Actor
 
+<a class="back_button" asp-action="Actors" asp-controller="Content">Назад</a>
+
 <form method="post" asp-action="EditActor" asp-controller="Content" class="form">
     <div class="form_field">
         <label asp-for="Name"></label>
@@ -50,5 +52,5 @@
     </div>
     
 
-    <input type="submit" value="Сохранить"/>
+    <input  type="submit" value="Сохранить"/>
 </form>

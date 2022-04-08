@@ -1,6 +1,7 @@
 ﻿@model Filmix.Models.FilmModels.Film
 
-<form method="post" asp-action="EditFIlm" asp-controller="Content" class="form">
+<a class="back_button" asp-action="Films" asp-controller="Content">Назад</a>
+<form method="post" asp-action="EditFilm" asp-controller="Content" class="form">
     
     <div class="form_description">
         <label asp-for="Description"></label>
@@ -63,7 +64,6 @@
     </div>
 
 
-
     <input type="submit" value="Сохранить"/>
-    <a asp-action="ChangeActorsInFilm" asp-route-FilmId="@Model.Id">Добавить актеров к фильму</a>
+    <a class="change_button"  asp-action="ChangeActorsInFilm" asp-route-filmId="@Model.Id">Добавить актеров к фильму</a>
 </form>

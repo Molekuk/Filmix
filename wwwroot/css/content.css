@@ -1,4 +1,8 @@
-﻿/*#region Таблица*/
+﻿body {
+    background: #b8bfc5;
+}
+
+/*#region Таблица*/
 
 .table {
     border: 1px solid #eee;
@@ -21,16 +25,17 @@
 }
 
 .table tbody tr:nth-child(odd) {
+        transition:1s;
         background: #fff;
 }
 
 .table tbody tr:nth-child(even) {
+        transition: 1s;
         background: #F7F7F7;
 }
 
 .table tbody tr:hover {
         background: #f9ca8a;
-        transition: 3s;
         cursor:pointer;
 }
 
@@ -45,21 +50,58 @@
 
 /*#endregion*/
 
-/*#region Кнопка редактирования*/
-.edit_button {
+/*#region Кнопки действий*/
+.action_button {
+    font-size: 19px;
+    transition: 0.8s;
     text-decoration: none;
-    color: #3961c8;
+    color: #3a3eac;
 }
 
-.edit_button:hover {
+.action_button:hover {
         color: red;
-        transition-duration: 0.6s;
+        font-size:25px;
 }
+
+.home_buttons{
+
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    height:150px;
+    width:200px;
+}
+
+.back_button {
+    position: absolute;
+    font-size: 40px;
+    transition: 0.8s;
+    text-decoration: none;
+    color: #3a3eac;
+    bottom: 0;
+    padding-bottom: 70px;
+}
+
+.back_button:hover {
+        color: red;
+        font-size: 50px;
+}
+
+
+.change_button {
+    background: #efefef;
+    color: black;
+    text-decoration: none;
+    font-size: 15px;
+}
+    .change_button:hover {
+        background: #e5e5e5;
+    }
 /*#endregion*/
 
 /*#region Форма изменения данных*/
-.form{
-    float:left;
+.form {
+    float: left;
 }
 
 .form_field{
