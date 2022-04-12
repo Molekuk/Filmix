@@ -44,7 +44,7 @@ namespace Filmix.Managers.Genres
             await _context.SaveChangesAsync();
         }
 
-        public async Task AddFilmToGenreAsync(int GenreId,IList<int> FilmIdList)
+        public async Task AddFilmsToGenreAsync(int GenreId,IList<int> FilmIdList)
         {
             var films = await _context.Films.ToListAsync();
             var genre = await FindAsync(GenreId);
@@ -60,9 +60,9 @@ namespace Filmix.Managers.Genres
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<ChangeFilmViewModel>> GetChangeFilmsViewModelAsync(Genre genre)
+        public async Task<IEnumerable<FilmInGenreViewModel>> GetFilmsInGenre(Genre genre)
         {
-            return await _context.Films.Select(f => new ChangeFilmViewModel
+            return await _context.Films.Select(f => new FilmInGenreViewModel
             {
                 FilmId = f.Id,
                 FilmName = f.Name,

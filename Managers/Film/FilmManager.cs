@@ -1,4 +1,5 @@
 ﻿using Filmix.Models.FilmModels;
+using Filmix.Models.GenreModels;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace Filmix.Managers.Films
 
         public async Task<Film> FindAsync(int id)
         {
-            return await _context.Films.Include(f=>f.Actors).FirstOrDefaultAsync(f=>f.Id==id);
+            return await _context.Films.Include(f=>f.Actors).Include(f=>f.Genres).FirstOrDefaultAsync(f=>f.Id==id);
         }
 
         public async Task<IEnumerable<Film>> GetFilmsAsync()
@@ -72,13 +73,39 @@ namespace Filmix.Managers.Films
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<ChangeActorViewModel>> GetChangeFilmsViewModelAsync(Film film)
+        public async Task<IEnumerable<ActorInFilmViewModel>> GetActorsInFilm(Film film)
         {
-            return await _context.Actors.Select(a => new ChangeActorViewModel
+            return await _context.Actors.Select(a => new ActorInFilmViewModel
             {
                 ActorId = a.Id,
                 ActorName = a.Name,
                 IsInFilm = film.Actors.Contains(a)
+            }).ToListAsync();
+        }
+
+        public async Task AddGenresToFilmAsync(int FilmId, IList<int> GenreIdList)
+        {
+            var genres = await _context.Genres.ToListAsync();
+            var film = await FindAsync(FilmId);
+
+            if (film.Genres.Any())
+                film.Genres.Clear();
+
+            foreach (var id in GenreIdList)
+            {
+                film.Genres.Add(genres[id - 1]);
+            }
+
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<GenreInFilmViewModel>> GetGenresInFilm(Film film)
+        {
+            return await _context.Genres.Select(g => new GenreInFilmViewModel
+            {
+                GenreId = g.Id,
+                GenreName = g.Name,
+                IsInFilm = film.Genres.Contains(g)
             }).ToListAsync();
         }
     }

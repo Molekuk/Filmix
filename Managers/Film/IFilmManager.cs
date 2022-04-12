@@ -10,9 +10,6 @@ namespace Filmix.Managers.Films
 
         Task<IEnumerable<Film>> GetFilmsAsync();
 
-        Task AddActorsToFilmAsync(int FilmId, IList<int> ActorIdList);
-
-        Task<IEnumerable<ChangeActorViewModel>> GetChangeFilmsViewModelAsync(Film film);
         Task<Film> FindAsync(int id);
 
         Task AddAsync(Film film);
@@ -20,5 +17,13 @@ namespace Filmix.Managers.Films
         Task UpdateAsync(Film film);
 
         Task DeleteAsync(int id);
+
+        Task AddActorsToFilmAsync(int FilmId, IList<int> ActorIdList);
+
+        Task<IEnumerable<ActorInFilmViewModel>> GetActorsInFilm(Film film);
+
+        Task AddGenresToFilmAsync(int FilmId, IList<int> GenreIdList);
+
+        public Task<IEnumerable<GenreInFilmViewModel>> GetGenresInFilm(Film film);
     }
 }

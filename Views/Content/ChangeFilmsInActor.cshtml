@@ -1,11 +1,11 @@
-﻿@model IEnumerable<Filmix.Models.GenreModels.FilmInGenreViewModel>
+﻿@model IEnumerable<Filmix.Models.ActorModels.FilmInActorViewModel>
 
-<h1>Добавление фильмов для жанра @ViewBag.Name</h1>
-<form method="post" asp-action="ChangeFilmsInGenre" asp-controller="Content" asp-route-GenreId="@ViewBag.Id">
+<h1>Добавление фильмов для актера @ViewBag.Name</h1>
+<form method="post" asp-action="ChangeFilmsInActor" asp-controller="Content" asp-route-ActorId="@ViewBag.Id">
     @foreach(var film in Model)
     {
         <div>
-            @if(film.IsInGenre)
+            @if(film.IsInActor)
             {
                 <input id="@film.FilmId" type="checkbox" name="ContainsFilmId" value="@film.FilmId" checked="checked"/>
             }
