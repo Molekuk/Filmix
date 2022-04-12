@@ -79,9 +79,15 @@ namespace Filmix.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> ChangeFilmsInActor(int actorId, IList<int> ContainsFilmId)
+        public async Task<IActionResult> ChangeFilmsInActor(int actorId, IList<int> containsFilmId)
         {
-            await _actorManager.AddFilmsToActorAsync(actorId, ContainsFilmId);
+            await _actorManager.AddFilmsToActorAsync(actorId, containsFilmId);
+            return RedirectToAction("Actors", "Content");
+        }
+
+        public async Task<IActionResult> DeleteActor(int actorId)
+        {
+            await _actorManager.DeleteAsync(actorId);
             return RedirectToAction("Actors", "Content");
         }
 
@@ -108,7 +114,7 @@ namespace Filmix.Controllers
                 await _filmManager.UpdateAsync(film);
                 return RedirectToAction("Films", "Content");
             }
-            return View();
+            return View(film);
         }
 
         public IActionResult AddFilm()
@@ -143,12 +149,12 @@ namespace Filmix.Controllers
             return RedirectToAction("Films", "Content");
         }
 
-        public async Task<IActionResult> ChangeGenresInFilm(int? FilmId)
+        public async Task<IActionResult> ChangeGenresInFilm(int? filmId)
         {
-            if (FilmId is null)
+            if (filmId is null)
                 return Content("Не указан Id фильма");
 
-            var film = await _filmManager.FindAsync(FilmId.Value);
+            var film = await _filmManager.FindAsync(filmId.Value);
             var genres = await _filmManager.GetGenresInFilm(film);
 
             ViewBag.Id = film.Id;
@@ -164,6 +170,11 @@ namespace Filmix.Controllers
             return RedirectToAction("Films", "Content");
         }
 
+        public async Task<IActionResult> DeleteFilm(int filmId)
+        {
+            await _filmManager.DeleteAsync(filmId);
+            return RedirectToAction("Films", "Content");
+        }
         #endregion
 
         #region Жанры
@@ -187,7 +198,7 @@ namespace Filmix.Controllers
                 await _genreManager.UpdateAsync(genre);
                 return RedirectToAction("Genres", "Content");
             }
-            return View();
+            return View(genre);
         }
 
         public IActionResult AddGenre()
@@ -201,12 +212,12 @@ namespace Filmix.Controllers
             return RedirectToAction("Genres", "Content");
         }
 
-        public async Task<IActionResult> ChangeFilmsInGenre(int? GenreId)
+        public async Task<IActionResult> ChangeFilmsInGenre(int? genreId)
         {
-            if (GenreId is null)
+            if (genreId is null)
                 return Content("Не указан Id жанра");
 
-            var genre = await _genreManager.FindAsync(GenreId.Value);
+            var genre = await _genreManager.FindAsync(genreId.Value);
             var films = await _genreManager.GetFilmsInGenre(genre);
 
             ViewBag.Id=genre.Id;
@@ -221,11 +232,17 @@ namespace Filmix.Controllers
             await _genreManager.AddFilmsToGenreAsync(genreId,containsFilmId);
             return RedirectToAction("Genres", "Content");
         }
+
+        public async Task<IActionResult> DeleteGenre(int genreId)
+        {
+            await _genreManager.DeleteAsync(genreId);
+            return RedirectToAction("Genres", "Content");
+        }
         #endregion
 
 
 
-        
+
     }
 
 

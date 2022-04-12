@@ -48,15 +48,15 @@ namespace Filmix.Managers.Actors
 
         public async Task AddFilmsToActorAsync(int ActorId, IList<int> FilmIdList)
         {
-            var actor = await FindAsync(ActorId);
             var films = await _context.Films.ToListAsync();
+            var actor = await FindAsync(ActorId);
 
             if (actor.Films.Any())
                 actor.Films.Clear();
 
             foreach (var id in FilmIdList)
             {
-                actor.Films.Add(films[id - 1]);
+                actor.Films.Add(films.FirstOrDefault(f => f.Id == id));
             }
 
             await _context.SaveChangesAsync();

@@ -1,5 +1,7 @@
 ﻿@model Filmix.Models.GenreModels.Genre
 
+<div class="form_container">
+
 <form method="post" asp-action="EditGenre" asp-controller="Content" class="form">
     <div class="form_field">
         <label asp-for="Name"></label>
@@ -27,5 +29,7 @@
 
     <input type="submit" value="Сохранить"/>
     <a class="change_button" asp-action="ChangeFilmsInGenre" asp-route-GenreId="@Model.Id">Изменить фильмы жанра</a>
+    <a class="change_button"  asp-action="DeleteGenre" asp-route-genreId="@Model.Id">Удалить жанр</a>
 </form>
 <a class="back_button" asp-action="Genres" asp-controller="Content">Назад</a>
+</div>

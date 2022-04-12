@@ -10,7 +10,7 @@ namespace Filmix.Models.FilmModels
 
         public decimal Rating { get; set; }
 
-        public IEnumerable<string> Genres { get; set; }
+        public IEnumerable<string> GenreNames { get; set; }
 
         public string Image { get; set; }
     }

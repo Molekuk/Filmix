@@ -1,5 +1,6 @@
 ﻿using Filmix.Managers.Account;
 using Filmix.Models.AccountModels;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -78,8 +79,6 @@ namespace Filmix.Controllers
             return View(model);
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
             await _accountManager.SignOut();

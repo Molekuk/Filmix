@@ -6,7 +6,8 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\img\Actors\" />
-    <Folder Include="wwwroot\js\" />
+    <Folder Include="wwwroot\img\Films\" />
+    <Folder Include="wwwroot\img\Genres\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,26 +1,38 @@
-﻿@{
+﻿@model IEnumerable<Filmix.Models.FilmModels.FilmViewModel>
+@{
     ViewBag.Title = "Главная";
 }
 
 
+<div class="film_str">
+    @foreach(var film in Model)
+    {
+         <div class="film_poster">
+    <a asp-action="" >
+        Подробнее
+     </a>
+        <img class="film_img" src="~/img/Films/@film.Image">
 
-<body>
-    @if(User.Identity.IsAuthenticated)
-    {
-        <h3 style="color:white">Привет @User.Identity.Name</h3>
-        <form method="post" asp-controller="Account" asp-action="Logout">
-            <input type="submit" value="Выход" />
-        </form>
-        <a asp-action="Home" asp-controller="Content">Редактирование контента</a>
+            <div class="film_description">
+                <div class="film_name">
+                    <p>@film.Name</p>
+                    <h1 id="@film.Name">@film.Rating</h1>
+                    <script>setColor('@film.Name')</script>
+                </div>
+
+                <div class="film_genre">
+                    <p style="font-size: x-large">@film.Year</p>
+                    @foreach(var genre in film.GenreNames)
+                    {
+                        <p>@genre</p>
+                    }
+                </div>
+            </div>
+    </div>
     }
-    else
-    {
-        <div class="act_button_handler">
-            <a asp-controller="Account" asp-action="Register" class="act_button">Регистрация</a>
-            <a asp-controller="Account" asp-action="Login" class="act_button">Логин</a>
-        </div>
-    }
-</body>
+</div>
+
+
 
    
 
