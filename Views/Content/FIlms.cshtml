@@ -23,12 +23,12 @@
 
         @foreach(var film in Model)
         {
-            <tr onclick="window.location.href='/Content/EditFilm/@film.Id';return false">
+            <tr class="super" onclick="window.location.href='/Content/EditFilm/@film.Id';return false">
                 <td>@film.Name</td>
                 <td>@film.Slug</td>
                 <td>@film.Image</td>
                 <td>@film.Duration</td>
-                <td class="description">@film.Description</td>
+                <td>@film.Description</td>
                 <td>@film.Country</td>
                 <td>@film.Producer</td>
                 <td>@film.Company</td>

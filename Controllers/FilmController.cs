@@ -22,9 +22,8 @@ namespace Filmix.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var films =  await _filmManager.GetFilmsAsync();
-            Console.WriteLine();
-            return View();
+            var films =  await _filmManager.GetFilmsViewModelAsync();
+            return View(films);
         }
      
 

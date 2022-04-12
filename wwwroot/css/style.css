@@ -4,18 +4,125 @@
     background-size:cover;
 }
 
-.act_button_handler{
-    display:flex;
-    justify-content:space-between;
-    width:300px;
+
+
+
+/*#region  Заголовок*/
+.logo {
+    position: absolute;
+    left: 0%;
 }
 
-.act_button{
-    color:aliceblue;
-    text-decoration:none;
-    font-size:xx-large;
+header {
+    display: flex;
+    justify-content: flex-end;
+    background: #bb2020;
+    height: 7.6%;
+    width: auto;
 }
 
-.act_button:hover{
-    color:red;
+.header_elem {
+    display: flex;
+    font-family: 'Scada', sans-serif;
+    color: white;
+    align-items: center;
+    justify-content: space-around;
+    font-size: x-large;
+    border-right: 2px solid black;
+    width: 12%;
+}
+
+    .header_elem:nth-child(4) {
+        border-right: none;
+    }
+
+    .header_elem a {
+        text-decoration: none;
+        color: white;
+    }
+
+        .header_elem a:hover {
+            color: black;
+        }
+/*#endregion  Заголовок*/
+
+.film_str {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 95%;
+    height: auto;
+    margin-top: 2.5%;
+    margin-left: 2.5%;
+}
+
+.film_poster {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    margin-right: 80px;
+    margin-bottom: 8%;
+}
+
+
+    .film_poster:nth-child(4n) {
+        margin-right: 0px;
+    }
+
+.film_description {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    background: rgba(26, 75, 111, 0.32);
+
+}
+
+.film_img {
+    display: flex;
+    object-fit: cover;
+    height: 400px;
+    width: 300px;
+}
+
+.film_poster a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    height: 400px;
+    width: 300px;
+    transition: 0.5s linear;
+    color: rgba(204, 204, 204, 0);
+    font-size: x-large;
+    font-family: 'Comfortaa', cursive;
+}
+
+    .film_poster a:hover {
+        background: rgba(146, 146, 146, 0.6);
+        color: #ffffff;
+    }
+
+.film_name {
+    font-family: 'Saira', sans-serif;
+    display: flex;
+    color: #ffffff;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 23px;
+}
+
+
+.film_genre {
+    color: #00ccff;
+    font-family: 'Roboto Slab', serif;
+    font-size: large;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 8px;
+    width: 300px;
+    height: auto;
+
 }

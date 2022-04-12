@@ -132,7 +132,7 @@ namespace Filmix.Migrations
                     b.Property<int>("FilmCount")
                         .HasColumnType("int");
 
-                    b.Property<string>("Genres")
+                    b.Property<string>("GenreName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<byte>("Height")
@@ -221,7 +221,7 @@ namespace Filmix.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Genres");
+                    b.ToTable("GenreName");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

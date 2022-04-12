@@ -9,18 +9,36 @@ namespace Filmix.Models.FilmModels
     public class Film
     {
         public int Id { get; set; }
+
+        [Display(Name ="Название")]
         public string Name { get; set; }
         public string Slug { get; set; }
+
         [MaxLength(8)]
+        [Display(Name = "Длительность")]
         public string Duration { get; set; }
+
+        [Display(Name = "Название изображения")]
         public string Image { get; set; }
+
+        [Display(Name = "Описание")]
         public string Description { get; set; }
+
+        [Display(Name = "Страна")]
         public string Country { get; set; }
+
+        [Display(Name = "Режиссер")]
         public string Producer { get; set; }
+
+        [Display(Name = "Кинокомпания")]
         public string Company { get; set; }
-        [Range(0,10)]
+
+        [Display(Name = "Рейтинг")]
+        [Range(0,10,ErrorMessage ="Число должно быть от 1 до 10")]
         public decimal Rating { get; set; }
-        [MaxLength(4)]
+
+        [Display(Name = "Год")]
+        [Range(0,2022,ErrorMessage = "Некорректный год")]
         public string Year { get; set; }
 
         public  List<Genre> Genres { get; set; }

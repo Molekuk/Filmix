@@ -2,46 +2,33 @@
 @{
     ViewBag.Title = "Регистрация";
 }
-<style>
-.super{
-    width:200px;
-    display:flex;
-    justify-content:space-between;
-    flex-direction:column;
-}
-.error{
-    color:#e2431d;
-}
-.text{
-    color:white;
-}
-</style>
+
 
 <form method="post" asp-controller="Account" asp-action="Register" >
     <div asp-validation-summary="ModelOnly" class="error"></div>
 
-    <div class="super">
-        <label asp-for="Name" class="text"></label>
+    <div >
+        <label asp-for="Name" ></label>
         <input asp-for="Name"/>
-        <span asp-validation-for="Name" class="error"></span>
+        <span asp-validation-for="Name"></span>
     </div>
 
-    <div class="super">
-        <label asp-for="Email" class="text"></label>
+    <div >
+        <label asp-for="Email" ></label>
         <input asp-for="Email"/>
-        <span asp-validation-for="Email"  class="error"></span>
+        <span asp-validation-for="Email"  ></span>
     </div>
 
-    <div class="super">
-        <label asp-for="Password" class="text"></label>
+    <div >
+        <label asp-for="Password" ></label>
         <input asp-for="Password"/>
-        <span asp-validation-for="Password"  class="error"></span>
+        <span asp-validation-for="Password"  ></span>
     </div>
 
-    <div class="super">
-        <label asp-for="PasswordConfirm" class="text"></label>
+    <div >
+        <label asp-for="PasswordConfirm" ></label>
         <input asp-for="PasswordConfirm"/>
-        <span asp-validation-for="PasswordConfirm"  class="error"></span>
+        <span asp-validation-for="PasswordConfirm"  ></span>
     </div>
 
     <input type="submit" value="Зарегестрироваться"/>

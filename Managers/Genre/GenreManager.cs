@@ -54,7 +54,7 @@ namespace Filmix.Managers.Genres
 
             foreach (var id in FilmIdList)
             {
-                genre.Films.Add(films[id-1]);
+                genre.Films.Add(films.FirstOrDefault(f => f.Id == id));
             }
 
             await _context.SaveChangesAsync();

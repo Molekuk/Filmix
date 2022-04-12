@@ -33,7 +33,7 @@ namespace Filmix.Managers.Films
                 Name = f.Name,
                 Year = f.Year,
                 Rating = f.Rating,
-                Genres = f.Genres.Select(g=>g.Name), 
+                GenreNames = f.Genres.Select(g=>g.Name), 
                 Image =f.Image
             }).ToListAsync();
         }
@@ -59,15 +59,15 @@ namespace Filmix.Managers.Films
 
         public async Task AddActorsToFilmAsync(int FilmId, IList<int> ActorIdList)
         {
-            var film = await FindAsync(FilmId);
             var actors = await _context.Actors.ToListAsync();
+            var film = await FindAsync(FilmId);
 
             if(film.Actors.Any())
                 film.Actors.Clear();
 
             foreach(var id in ActorIdList)
             {
-                film.Actors.Add(actors[id-1]);
+                film.Actors.Add(actors.FirstOrDefault(a => a.Id == id));
             }
 
             await _context.SaveChangesAsync();
@@ -93,7 +93,7 @@ namespace Filmix.Managers.Films
 
             foreach (var id in GenreIdList)
             {
-                film.Genres.Add(genres[id - 1]);
+                film.Genres.Add(genres.FirstOrDefault(g=>g.Id==id));
             }
 
             await _context.SaveChangesAsync();
