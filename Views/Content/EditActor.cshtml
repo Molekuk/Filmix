@@ -1,6 +1,5 @@
 ﻿@model Filmix.Models.ActorModels.Actor
 
-<a class="back_button" asp-action="Actors" asp-controller="Content">Назад</a>
 
 <form method="post" asp-action="EditActor" asp-controller="Content" class="form">
     <div class="form_field">
@@ -53,4 +52,6 @@
     
 
     <input  type="submit" value="Сохранить"/>
+    <a class="change_button"  asp-action="ChangeFilmsInActor" asp-route-actorId="@Model.Id">Изменить фильмы актера</a>
 </form>
+<a class="back_button" asp-action="Actors" asp-controller="Content">Назад</a>

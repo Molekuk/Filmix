@@ -1,6 +1,7 @@
 ﻿using Filmix.Models.ActorModels;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Filmix.Managers.Actors
@@ -43,6 +44,32 @@ namespace Filmix.Managers.Actors
         {
             _context.Actors.Update(actor);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task AddFilmsToActorAsync(int ActorId, IList<int> FilmIdList)
+        {
+            var actor = await FindAsync(ActorId);
+            var films = await _context.Films.ToListAsync();
+
+            if (actor.Films.Any())
+                actor.Films.Clear();
+
+            foreach (var id in FilmIdList)
+            {
+                actor.Films.Add(films[id - 1]);
+            }
+
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<FilmInActorViewModel>> GetFilmsInActor(Actor actor)
+        {
+            return await _context.Films.Select(f => new FilmInActorViewModel
+            {
+                FilmId=f.Id,
+                FilmName=f.Name,
+                IsInActor= actor.Films.Contains(f)
+            }).ToListAsync();
         }
     }
 }

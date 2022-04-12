@@ -49,7 +49,7 @@ namespace Filmix.Controllers
             if (ModelState.IsValid)
             {
                 await _actorManager.UpdateAsync(actor);
-                return RedirectToAction("Success", "Content", new { message = $"Информация об актере {actor.Name} успешно изменена!" });
+                return RedirectToAction("Actors", "Content");
             }
             return View(actor);
         }
@@ -61,8 +61,30 @@ namespace Filmix.Controllers
         public async Task<IActionResult> AddActor(Actor actor)
         {
             await _actorManager.AddAsync(actor);
-            return RedirectToAction("Success", "Content", new { message = $"Актер {actor.Name} успешно добавлен!" });
+            return RedirectToAction("Actors", "Content");
         }
+
+        public async Task<IActionResult> ChangeFilmsInActor(int? actorId)
+        {
+            if (actorId is null)
+                return Content("Не указан Id актера");
+
+            var actor = await _actorManager.FindAsync(actorId.Value);
+            var films = await _actorManager.GetFilmsInActor(actor);
+
+            ViewBag.Id = actor.Id;
+            ViewBag.Name = actor.Name;
+
+            return View(films);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangeFilmsInActor(int actorId, IList<int> ContainsFilmId)
+        {
+            await _actorManager.AddFilmsToActorAsync(actorId, ContainsFilmId);
+            return RedirectToAction("Actors", "Content");
+        }
+
         #endregion
 
         #region Фильмы
@@ -84,7 +106,7 @@ namespace Filmix.Controllers
             if (ModelState.IsValid)
             {
                 await _filmManager.UpdateAsync(film);
-                return RedirectToAction("Success", "Content", new { message = $"Информация о фильме {film.Name} успешно изменена!" });
+                return RedirectToAction("Films", "Content");
             }
             return View();
         }
@@ -97,7 +119,7 @@ namespace Filmix.Controllers
         public async Task<IActionResult> AddFilm(Film film)
         {
             await _filmManager.AddAsync(film);
-            return RedirectToAction("Success", "Content", new { message = $"Фильм {film.Name} успешно добавлен!" });
+            return RedirectToAction("Films", "Content");
         }
 
         public async Task<IActionResult> ChangeActorsInFilm(int? filmId)
@@ -106,7 +128,7 @@ namespace Filmix.Controllers
                 return Content("Не указан Id фильма");
 
             var film = await _filmManager.FindAsync(filmId.Value);
-            var actors = await _filmManager.GetChangeFilmsViewModelAsync(film);
+            var actors = await _filmManager.GetActorsInFilm(film);
 
             ViewBag.Id = film.Id;
             ViewBag.Name = film.Name;
@@ -118,8 +140,28 @@ namespace Filmix.Controllers
         public async Task<IActionResult> ChangeActorsInFilm(int filmId, IList<int> containsActorId)
         {
             await _filmManager.AddActorsToFilmAsync(filmId, containsActorId);
-            string filmName = (await _filmManager.FindAsync(filmId)).Name;
-            return RedirectToAction("Success", "Content", new { message = $"Актеры фильма {filmName} успешно изменены!" });
+            return RedirectToAction("Films", "Content");
+        }
+
+        public async Task<IActionResult> ChangeGenresInFilm(int? FilmId)
+        {
+            if (FilmId is null)
+                return Content("Не указан Id фильма");
+
+            var film = await _filmManager.FindAsync(FilmId.Value);
+            var genres = await _filmManager.GetGenresInFilm(film);
+
+            ViewBag.Id = film.Id;
+            ViewBag.Name = film.Name;
+
+            return View(genres);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangeGenresInFilm(int filmId, IList<int> containsGenreId)
+        {
+            await _filmManager.AddGenresToFilmAsync(filmId, containsGenreId);
+            return RedirectToAction("Films", "Content");
         }
 
         #endregion
@@ -143,7 +185,7 @@ namespace Filmix.Controllers
             if (ModelState.IsValid)
             {
                 await _genreManager.UpdateAsync(genre);
-                return RedirectToAction("Success", "Content", new { message = $"Информация о жанре {genre.Name} успешно изменена!" });
+                return RedirectToAction("Genres", "Content");
             }
             return View();
         }
@@ -156,7 +198,7 @@ namespace Filmix.Controllers
         public async Task<IActionResult> AddGenre(Genre genre)
         {
             await _genreManager.AddAsync(genre);
-            return RedirectToAction("Success", "Content", new { message = $"Жанр {genre.Name} успешно добавлен!" });
+            return RedirectToAction("Genres", "Content");
         }
 
         public async Task<IActionResult> ChangeFilmsInGenre(int? GenreId)
@@ -165,7 +207,7 @@ namespace Filmix.Controllers
                 return Content("Не указан Id жанра");
 
             var genre = await _genreManager.FindAsync(GenreId.Value);
-            var films = await _genreManager.GetChangeFilmsViewModelAsync(genre);
+            var films = await _genreManager.GetFilmsInGenre(genre);
 
             ViewBag.Id=genre.Id;
             ViewBag.Name=genre.Name;
@@ -176,17 +218,12 @@ namespace Filmix.Controllers
         [HttpPost]
         public async Task<IActionResult> ChangeFilmsInGenre(int genreId,IList<int> containsFilmId)
         {
-            await _genreManager.AddFilmToGenreAsync(genreId,containsFilmId);
-            string genreName = (await _genreManager.FindAsync(genreId)).Name;
-            return RedirectToAction("Success", "Content", new { message = $"Фильмы жанра {genreName} успешно изменены!" });
+            await _genreManager.AddFilmsToGenreAsync(genreId,containsFilmId);
+            return RedirectToAction("Genres", "Content");
         }
         #endregion
 
-        public IActionResult Success(string message)
-        {
-            ViewBag.Msg=message;
-            return View();
-        }
+
 
         
     }

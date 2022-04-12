@@ -15,5 +15,9 @@ namespace Filmix.Managers.Actors
         Task UpdateAsync(Actor actor);
 
         Task DeleteAsync(int id);
+
+        Task AddFilmsToActorAsync(int ActorId, IList<int> FilmIdList);
+
+        Task<IEnumerable<FilmInActorViewModel>> GetFilmsInActor(Actor actor);
     }
 }

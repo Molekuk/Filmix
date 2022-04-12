@@ -15,10 +15,10 @@ namespace Filmix.Managers.Genres
         Task AddAsync(Genre genre);
 
         Task UpdateAsync(Genre genre);
-
-        Task AddFilmToGenreAsync(int GenreId, IList<int> FilmIdList);
-
-        public Task<IEnumerable<ChangeFilmViewModel>> GetChangeFilmsViewModelAsync(Genre genre);
         Task DeleteAsync(int id);
+
+        Task AddFilmsToGenreAsync(int GenreId, IList<int> FilmIdList);
+
+        public Task<IEnumerable<FilmInGenreViewModel>> GetFilmsInGenre(Genre genre);
     }
 }

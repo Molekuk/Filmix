@@ -1,6 +1,10 @@
 ﻿body {
     background: #b8bfc5;
+
+
 }
+
+
 
 /*#region Таблица*/
 
@@ -73,13 +77,10 @@
 }
 
 .back_button {
-    position: absolute;
     font-size: 40px;
     transition: 0.8s;
     text-decoration: none;
     color: #3a3eac;
-    bottom: 0;
-    padding-bottom: 70px;
 }
 
 .back_button:hover {
@@ -89,14 +90,13 @@
 
 
 .change_button {
-    background: #efefef;
     color: black;
     text-decoration: none;
     font-size: 15px;
 }
-    .change_button:hover {
-        background: #e5e5e5;
-    }
+.change_button:hover {
+        color:red;
+}
 /*#endregion*/
 
 /*#region Форма изменения данных*/
@@ -117,7 +117,7 @@
 
 .form_description{
     position:absolute;
-    margin-left:20%;
+    margin-left:40%;
 }
     .form_description textarea {
         resize:none;
