@@ -8,6 +8,7 @@ namespace Filmix.Managers.Actors
     {
         Task<IEnumerable<Actor>> GetActorsAsync();
 
+        Task<IEnumerable<ActorViewModel>> GetActorsViewModelAsync();
         Task<Actor> FindAsync(int id);
 
         Task AddAsync(Actor actor);
@@ -18,6 +19,6 @@ namespace Filmix.Managers.Actors
 
         Task AddFilmsToActorAsync(int ActorId, IList<int> FilmIdList);
 
-        Task<IEnumerable<FilmInActorViewModel>> GetFilmsInActor(Actor actor);
+        Task<IEnumerable<FilmInActorViewModel>> GetFilmsInActorAsync(Actor actor);
     }
 }

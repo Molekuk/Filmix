@@ -70,7 +70,7 @@ namespace Filmix.Controllers
                 return Content("Не указан Id актера");
 
             var actor = await _actorManager.FindAsync(actorId.Value);
-            var films = await _actorManager.GetFilmsInActor(actor);
+            var films = await _actorManager.GetFilmsInActorAsync(actor);
 
             ViewBag.Id = actor.Id;
             ViewBag.Name = actor.Name;
@@ -134,7 +134,7 @@ namespace Filmix.Controllers
                 return Content("Не указан Id фильма");
 
             var film = await _filmManager.FindAsync(filmId.Value);
-            var actors = await _filmManager.GetActorsInFilm(film);
+            var actors = await _filmManager.GetActorsInFilmAsync(film);
 
             ViewBag.Id = film.Id;
             ViewBag.Name = film.Name;
@@ -155,7 +155,7 @@ namespace Filmix.Controllers
                 return Content("Не указан Id фильма");
 
             var film = await _filmManager.FindAsync(filmId.Value);
-            var genres = await _filmManager.GetGenresInFilm(film);
+            var genres = await _filmManager.GetGenresInFilmAsync(film);
 
             ViewBag.Id = film.Id;
             ViewBag.Name = film.Name;
