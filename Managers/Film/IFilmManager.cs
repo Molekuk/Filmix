@@ -20,10 +20,10 @@ namespace Filmix.Managers.Films
 
         Task AddActorsToFilmAsync(int FilmId, IList<int> ActorIdList);
 
-        Task<IEnumerable<ActorInFilmViewModel>> GetActorsInFilm(Film film);
+        Task<IEnumerable<ActorInFilmViewModel>> GetActorsInFilmAsync(Film film);
 
         Task AddGenresToFilmAsync(int FilmId, IList<int> GenreIdList);
 
-        public Task<IEnumerable<GenreInFilmViewModel>> GetGenresInFilm(Film film);
+        public Task<IEnumerable<GenreInFilmViewModel>> GetGenresInFilmAsync(Film film);
     }
 }

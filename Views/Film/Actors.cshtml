@@ -1,0 +1,12 @@
+﻿ @model IEnumerable<Filmix.Models.ActorModels.ActorViewModel>
+
+ <div class="actor_str">
+    @foreach(var actor in Model)
+    {
+        <div class="actor_poster">
+                <img src="~/img/Actors/@actor.Image">
+                <a asp-action="Actor" asp-route-id="@actor.Id">Подробнее</a>
+                <h1>@actor.Name</h1>
+            </div>
+    }
+   </div>

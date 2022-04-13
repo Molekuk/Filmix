@@ -9,6 +9,7 @@ namespace Filmix.Managers.Genres
     {
         Task<IEnumerable<Genre>> GetGenresAsync();
 
+        Task<IEnumerable<GenreViewModel>> GetGenresViewModelAsync();
 
         Task<Genre> FindAsync(int id);
 

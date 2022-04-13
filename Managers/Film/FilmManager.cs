@@ -74,7 +74,7 @@ namespace Filmix.Managers.Films
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<ActorInFilmViewModel>> GetActorsInFilm(Film film)
+        public async Task<IEnumerable<ActorInFilmViewModel>> GetActorsInFilmAsync(Film film)
         {
             return await _context.Actors.Select(a => new ActorInFilmViewModel
             {
@@ -100,7 +100,7 @@ namespace Filmix.Managers.Films
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<GenreInFilmViewModel>> GetGenresInFilm(Film film)
+        public async Task<IEnumerable<GenreInFilmViewModel>> GetGenresInFilmAsync(Film film)
         {
             return await _context.Genres.Select(g => new GenreInFilmViewModel
             {

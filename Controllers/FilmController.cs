@@ -38,12 +38,25 @@ namespace Filmix.Controllers
             return View(film);
         }
 
+
+        public async Task<IActionResult> Actors()
+        {
+            var actors = await _actorManager.GetActorsViewModelAsync();
+            return View(actors);
+        }
+
         public async Task<IActionResult> Actor(int id)
         {
             var actor = await _actorManager.FindAsync(id);
             return View(actor);
         }
 
+
+        public async Task<IActionResult> Genres()
+        {
+            var genres = await _genreManager.GetGenresViewModelAsync();
+            return View(genres);
+        }
         public async Task<IActionResult> Genre(int id)
         {
             var genre = await _genreManager.FindAsync(id);

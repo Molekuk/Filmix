@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Filmix.Models.GenreModels.GenreViewModel>
+   <div class="genre_str">
+    @foreach(var genre in Model)
+    {
+            <div class="genre_poster">
+                <img src="~/img/Genres/@genre.Image">
+                <a asp-action="Genre" asp-route-id="@genre.Id">@genre.Name</a>
+            </div>
+    }
+   </div>

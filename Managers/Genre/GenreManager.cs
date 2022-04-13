@@ -69,6 +69,15 @@ namespace Filmix.Managers.Genres
                 IsInGenre = genre.Films.Contains(f)
             }).ToListAsync();
         }
-      
+
+        public async Task<IEnumerable<GenreViewModel>> GetGenresViewModelAsync()
+        {
+            return await _context.Genres.Select(g => new GenreViewModel
+            {
+                Id = g.Id,
+                Name = g.Name,
+                Image=g.Image
+            }).ToListAsync();
+        }
     }
 }

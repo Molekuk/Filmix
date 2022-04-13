@@ -62,13 +62,23 @@ namespace Filmix.Managers.Actors
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<FilmInActorViewModel>> GetFilmsInActor(Actor actor)
+        public async Task<IEnumerable<FilmInActorViewModel>> GetFilmsInActorAsync(Actor actor)
         {
             return await _context.Films.Select(f => new FilmInActorViewModel
             {
                 FilmId=f.Id,
                 FilmName=f.Name,
                 IsInActor= actor.Films.Contains(f)
+            }).ToListAsync();
+        }
+
+        public async Task<IEnumerable<ActorViewModel>> GetActorsViewModelAsync()
+        {
+            return await _context.Actors.Select(a => new ActorViewModel
+            {
+                Id= a.Id,
+                Name= a.Name,
+                Image= a.Image
             }).ToListAsync();
         }
     }
