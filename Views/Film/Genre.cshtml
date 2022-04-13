@@ -1,11 +1,8 @@
-﻿@model IEnumerable<Filmix.Models.FilmModels.FilmViewModel>
-@{
-    ViewBag.Title = "Главная";
-}
-
+﻿@model Filmix.Models.GenreModels.Genre
+<div class="genre_name"><h1>@Model.Name</h1></div>
 
 <div class="film_str">
-    @foreach(var film in Model)
+    @foreach(var film in Model.Films)
     {
          <div class="film_poster">
     <a asp-action="Film" asp-route-id="@film.Id">
@@ -22,17 +19,12 @@
 
                 <div class="film_genre">
                     <p style="font-size: x-large">@film.Year</p>
-                    @foreach(var genre in film.GenreNames)
+                    @foreach(var genre in film.Genres)
                     {
-                        <p>@genre</p>
+                        <p>@genre.Name</p>
                     }
                 </div>
             </div>
     </div>
     }
 </div>
-
-
-
-   
-

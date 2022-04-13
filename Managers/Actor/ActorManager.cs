@@ -16,7 +16,7 @@ namespace Filmix.Managers.Actors
 
         public async Task<Actor> FindAsync(int id)
         {
-            return await _context.Actors.Include(a=>a.Films).FirstOrDefaultAsync(a=>a.Id==id);
+            return await _context.Actors.Include(a=>a.Films).ThenInclude(f=>f.Genres).FirstOrDefaultAsync(a=>a.Id==id);
         }
 
         

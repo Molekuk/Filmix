@@ -46,6 +46,9 @@ header {
         }
 /*#endregion  Заголовок*/
 
+
+
+/*#region Главная страница*/
 .film_str {
     display: flex;
     flex-direction: row;
@@ -126,3 +129,297 @@ header {
     height: auto;
 
 }
+/*#endregion*/
+
+
+/*#region Страница фильма*/
+
+.curr_film {
+    display: flex;
+    background: rgba(26, 75, 111, 0.32);
+    height: 90%;
+    width: auto;
+}
+
+    .curr_film img {
+        height:100%;
+    }
+
+.curr_film_info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px
+}
+
+.curr_film_name {
+    font-family: 'Saira', sans-serif;
+    font-size: 50px;
+    font-weight: bold;
+    color: white;
+}
+
+.curr_film_en_name {
+    font-family: 'Saira', sans-serif;
+    font-size: 20px;
+    margin-top: 15px;
+    color: #c1bfbf;
+}
+
+.curr_film_desc {
+    color: #dcdcdc;
+    font-family: 'Saira', sans-serif;
+    font-size: 20px;
+    margin-top: 15px;
+    text-align: justify;
+    padding-right: 20px;
+}
+
+.curr_film_about {
+    margin-top: 40px;
+    color: #dcdcdc;
+    font-family: 'Saira', sans-serif;
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+    .curr_film_about li:nth-child(1) {
+        margin-top: 20px;
+    }
+
+    .curr_film_about li {
+        margin-top: 10px;
+        margin-left: 33px;
+        color: #dcdcdc;
+        font-family: 'Saira', sans-serif;
+        font-size: 20px;
+        display: flex;
+    }
+
+        .curr_film_about li h1:nth-child(1) {
+            width: 200px;
+        }
+
+        .curr_film_about li h1:nth-child(2) {
+            font-weight: bold;
+        }
+
+.curr_film_rating {
+    position: absolute;
+    display: flex;
+    font-weight: bold;
+    font-size: 30px;
+    color: #dcdcdc;
+    font-family: 'Saira', sans-serif;
+    align-items: end;
+    margin-top: 40%;
+}
+
+.genre_ref {
+    text-decoration: none;
+    color: #03f7ff;
+}
+
+    .genre_ref:hover {
+        color: #bb2020;
+    }
+
+.actor_ref {
+    text-decoration: none;
+    color: #03f7ff;
+}
+
+    .actor_ref:hover {
+        color: #bb2020;
+    }
+
+/*#endregion Страница фильма*/
+
+
+/*#region Жанры*/
+.genre_str {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 95%;
+    height: auto;
+    margin-top: 2.5%;
+    margin-left: 2.5%;
+}
+
+.genre_poster {
+    display: flex;
+    height: auto;
+    margin-bottom: 80px;
+}
+
+    .genre_poster img {
+        width: 650px;
+        height: 550px;
+        display: flex;
+        object-fit: cover;
+    }
+
+    .genre_poster a {
+        display: flex;
+        color: white;
+        font-family: 'Roboto Slab', serif;
+        font-size: 64px;
+        font-weight: bold;
+        position: absolute;
+        width: 650px;
+        height: 550px;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        transition: 0.5s linear;
+    }
+
+        .genre_poster a:hover {
+            background: rgba(146, 146, 146, 0.6);
+            color: #ffffff;
+        }
+
+.genre_name {
+    font-family: 'Saira', sans-serif;
+    font-size: 50px;
+    font-weight: bold;
+    color: white;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+/*#endregion Жанры*/
+
+/*#region Актеры*/
+.actor_str {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 95%;
+    height: auto;
+    margin-top: 2.5%;
+    margin-left: 2.5%;
+}
+
+.actor_poster {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    margin-bottom: 80px;
+    margin-right: 30px;
+    align-items: center;
+    background: rgba(26, 75, 111, 0.32);
+}
+
+    .actor_poster img {
+        height: 530px;
+        width: 380px;
+        display: flex;
+        object-fit: cover;
+    }
+
+    .actor_poster a {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        height: 530px;
+        width: 380px;
+        transition: 0.5s linear;
+        color: rgba(204, 204, 204, 0);
+        font-size: x-large;
+        font-family: 'Comfortaa', cursive;
+    }
+
+        .actor_poster a:hover {
+            background: rgba(146, 146, 146, 0.6);
+            color: #ffffff;
+        }
+
+    .actor_poster h1 {
+        display: flex;
+        height: 45px;
+        font-family: 'Saira', sans-serif;
+        font-size: 23px;
+        color: white;
+        align-items: center;
+    }
+
+
+.curr_actor {
+    display: flex;
+    background: rgba(26, 75, 111, 0.32);
+    height: 60%;
+    width: auto;
+}
+
+    .curr_actor img {
+        height: 100%;
+    }
+
+.curr_actor_info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+}
+
+.curr_actor_name {
+    font-family: 'Saira', sans-serif;
+    font-size: 50px;
+    font-weight: bold;
+    color: white;
+}
+
+.curr_actor_en_name {
+    font-family: 'Saira', sans-serif;
+    font-size: 20px;
+    margin-top: 15px;
+    color: #c1bfbf;
+}
+
+
+.curr_actor_about {
+    margin-top: 40px;
+    color: #dcdcdc;
+    font-family: 'Saira', sans-serif;
+    font-size: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+    .curr_actor_about li:nth-child(1) {
+        margin-top: 20px;
+    }
+
+    .curr_actor_about li {
+        margin-top: 18px;
+        margin-left: 33px;
+        color: #dcdcdc;
+        font-family: 'Saira', sans-serif;
+        font-size: 20px;
+        display: flex;
+    }
+
+        .curr_actor_about li h1:nth-child(1) {
+            width: 200px;
+        }
+
+        .curr_actor_about li h1:nth-child(2) {
+            font-weight: bold;
+        }
+
+.actor_name {
+    font-family: 'Saira', sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+    color: white;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/*#endregion Актеры*/

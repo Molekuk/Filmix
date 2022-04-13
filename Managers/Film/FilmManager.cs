@@ -30,6 +30,7 @@ namespace Filmix.Managers.Films
         {
             return await _context.Films.Select(f=>new FilmViewModel
             {
+                Id = f.Id,
                 Name = f.Name,
                 Year = f.Year,
                 Rating = f.Rating,

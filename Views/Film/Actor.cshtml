@@ -1,0 +1,74 @@
+﻿@model Filmix.Models.ActorModels.Actor 
+<div class="curr_actor" style="margin: 30px">
+        <img src="~/img/Actors/@Model.Image">
+
+         <div class="curr_actor_info">
+
+                <h1 class="curr_actor_name">@Model.Name</h1>
+
+                <h1 class="curr_actor_en_name">@Model.Slug</h1>
+
+                <ul class="curr_actor_about">
+                 О персоне:
+                 <li>
+                     <h1>Дата рождения:</h1>
+                     <h1>@Model.DateBirth</h1>
+                 </li>
+
+                 <li>
+                     <h1>Рост:</h1>
+                     <h1>@Model.Height см</h1>
+                 </li>
+
+                 <li>
+                     <h1>Место рождения:</h1>
+                     <h1>@Model.PlaceBirth</h1>
+                 </li>
+
+                 <li>
+                     <h1>Жанры:</h1>
+                     <h1>@Model.Genres</h1>
+                 </li>
+
+                 <li>
+                     <h1>Всего фильмов:</h1>
+                     <h1>@Model.FilmCount</h1>
+                 </li>
+
+             </ul>
+
+
+
+         </div>
+</div>
+
+     <div class="actor_name"><h1>@Model.Name - фильмы</h1></div>
+
+
+<div class="film_str">
+    @foreach(var film in Model.Films)
+    {
+         <div class="film_poster">
+    <a asp-action="Film" asp-route-id="@film.Id">
+        Подробнее
+     </a>
+        <img class="film_img" src="~/img/Films/@film.Image">
+
+            <div class="film_description">
+                <div class="film_name">
+                    <p>@film.Name</p>
+                    <h1 id="film_@film.Id">@film.Rating</h1>
+                    <script>setColor('film_@film.Id')</script>
+                </div>
+
+                <div class="film_genre">
+                    <p style="font-size: x-large">@film.Year</p>
+                    @foreach(var genre in film.Genres)
+                    {
+                        <p>@genre.Name</p>
+                    }
+                </div>
+            </div>
+    </div>
+    }
+</div>
