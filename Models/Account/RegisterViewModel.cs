@@ -6,7 +6,7 @@ namespace Filmix.Models.AccountModels
     {
         [Required(ErrorMessage = "Введите имя пользователя")]
         [StringLength(maximumLength:20,MinimumLength =3,ErrorMessage ="Длина имени должна быть от 3 до 20 символов")]
-        [Display(Name ="Имя пользователя")]
+        [Display(Name ="Логин")]
         public string Name { get; set; }
 
         [Required(ErrorMessage ="Введите Email")]
@@ -23,10 +23,10 @@ namespace Filmix.Models.AccountModels
         [Display(Name ="Пароль")]
         public string Password { get; set; }
 
-        [Required(ErrorMessage = "Подтвердите пароль")]
+        [Required(ErrorMessage = "Повторите пароль")]
         [Compare("Password",ErrorMessage ="Пароли не совпадают")]
         [DataType(DataType.Password)]
-        [Display(Name = "Подтвердить пароль")]
+        [Display(Name = "Повторите пароль")]
         public string PasswordConfirm { get; set; }
 
 

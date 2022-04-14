@@ -1,4 +1,7 @@
 ﻿@model Filmix.Models.ActorModels.Actor 
+@{
+    ViewBag.Title = @Model.Name;
+}
 <div class="curr_actor" style="margin: 30px">
         <img src="~/img/Actors/@Model.Image">
 

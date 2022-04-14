@@ -8,6 +8,7 @@
     <Folder Include="wwwroot\img\Actors\" />
     <Folder Include="wwwroot\img\Films\" />
     <Folder Include="wwwroot\img\Genres\" />
+    <Folder Include="wwwroot\mp4\" />
   </ItemGroup>
 
   <ItemGroup>

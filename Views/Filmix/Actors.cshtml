@@ -1,5 +1,7 @@
 ﻿ @model IEnumerable<Filmix.Models.ActorModels.ActorViewModel>
-
+ @{
+    ViewBag.Title = "Актеры";
+}
  <div class="actor_str">
     @foreach(var actor in Model)
     {
