@@ -73,7 +73,7 @@ namespace Filmix
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern:"{controller}/{action}/{id?}",
-                    defaults: new { controller="Film",action="Index"}
+                    defaults: new { controller="Filmix",action="Index"}
                     );
 
 

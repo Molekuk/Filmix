@@ -1,5 +1,8 @@
 ﻿@model IEnumerable<Filmix.Models.GenreModels.GenreViewModel>
-   <div class="genre_str">
+@{
+    ViewBag.Title = "Жанры";
+}
+    <div class="genre_str">
     @foreach(var genre in Model)
     {
             <div class="genre_poster">

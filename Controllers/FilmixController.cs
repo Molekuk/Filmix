@@ -13,13 +13,13 @@ using System.Threading.Tasks;
 
 namespace Filmix.Controllers
 {
-    public class FilmController : Controller
+    public class FilmixController : Controller
     {
         private readonly IFilmManager _filmManager;
         private readonly IGenreManager _genreManager;
         private readonly IActorManager _actorManager;
 
-        public FilmController(IFilmManager filmManager, IGenreManager genreManager, IActorManager actorManager)
+        public FilmixController(IFilmManager filmManager, IGenreManager genreManager, IActorManager actorManager)
         {
             _filmManager = filmManager;
             _genreManager = genreManager;

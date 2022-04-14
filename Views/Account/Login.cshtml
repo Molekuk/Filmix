@@ -1,28 +1,55 @@
 ﻿@model Filmix.Models.AccountModels.LoginViewModel
-
+@{
+    ViewBag.Title = "Вход";
+}
 <link rel="stylesheet" href="~/css/login.css" >
-<div>
-    <h1>Вход в систему</h1>
-    <form method="post" asp-controller="Account" asp-action="Login" asp-route-returnUrl="@Model.ReturnUrl">
-        <div asp-validation-summary="ModelOnly" ></div>
 
-        <div>
-            <label asp-for="Email" class="text"></label>
-            <input asp-for="Email"/>
-            <span asp-validation-for="Email" ></span>
-        </div>
+<div class="center">
+    <div class="error_container">
+            <div asp-validation-summary="ModelOnly"></div>
 
-        <div>
-            <label asp-for="Password" class="text"></label>
-            <input asp-for="Password"/>
-            <span asp-validation-for="Password"  ></span>
-        </div>
+            <span id="error1" asp-validation-for="Email"></span>
 
-        <input type="submit" value="Войти" class="send_button"/>
+            <span id="error2" asp-validation-for="Password"  ></span>
+
+    </div>
+
+
+    <form style="height: 400px" class="form" method="post" asp-controller="Account" asp-action="Login">
+          <div class="title">Вход</div>
+
+          <div class="input-container ic2">
+            <input asp-for="Email" class="input"  placeholder=" " />
+            <div class="cut cut-short"></div>
+            <label asp-for="Email" class="placeholder"></label>
+          </div>
+
+          <div class="input-container ic2">
+            <input  asp-for="Password" class="input"  placeholder=" " />
+            <div class="cut cut-short"></div>
+            <label asp-for="Password" class="placeholder"></label>
+          </div>
+
+
+
+          <input type="submit" class="submit" value="Войти"/>
+
+          <a class="already_button" asp-action="Register" asp-controller="Account" >У меня нет аккаунта</a>
+        
     </form>
 </div>
 
-<div>
-   <h3>Нет аккаунта? Зарегестрируйтесь</h3>
-   <a asp-action="Register" asp-controller="Account" >Зарегестрироваться</a>
-</div>
+<script>
+    function showError() {
+        var error1 = document.getElementById('error1');
+        var error2 = document.getElementById('error2');
+
+
+        if(error1.textContent.length==0)
+            error1.style.display='none';
+        if(error2.textContent.length==0)
+            error2.style.display='none';
+    }
+
+    showError()
+</script>
