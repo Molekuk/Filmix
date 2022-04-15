@@ -1,5 +1,8 @@
 ﻿using Filmix.Models.AccountModels;
+using Filmix.Services;
 using Microsoft.AspNetCore.Identity;
+using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Filmix.Managers.Account
@@ -8,37 +11,48 @@ namespace Filmix.Managers.Account
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-        public AccountManager(UserManager<User> userManager, SignInManager<User> signInManager)
+        private IEmailService EmailService { get; set; }   
+        public AccountManager(UserManager<User> userManager, SignInManager<User> signInManager,IEmailService emailService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            EmailService = emailService;
         }
 
-        public async Task<IdentityResult> Register(RegisterViewModel model)
+        public async Task<RegisterResult> Register(RegisterViewModel model)
         {
             User user = new User { Email=model.Email,UserName=model.Email, Name = model.Name};
-            var result = await _userManager.CreateAsync(user,model.Password);
+            RegisterResult userResult = new RegisterResult();
 
-            if(result.Succeeded)
+            if (_userManager.Users.Any(u => u.Name == user.Name))
             {
-                await _signInManager.SignInAsync(user, false);
+                userResult.Errors.Add("Пользователь с таким именем уже существует");
+                userResult.Succeeded = false;
+            }
+            else if (_userManager.Users.Any(u => u.UserName == user.UserName))
+            {
+                userResult.Errors.Add("Пользователь с таким email уже существует");
+                userResult.Succeeded = false;
             }
             else
+                userResult.Succeeded = (await _userManager.CreateAsync(user, model.Password)).Succeeded;
+
+            if (userResult.Succeeded)
             {
-                
-                foreach (var error in result.Errors)
-                {
-                    if (error.Code == "DuplicateUserName")
-                        error.Description="Пользователь с таким Email уже существует";
-                }
+                userResult.Succeeded = true;
+                var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                await EmailService.SendEmailAsync(user.Email, token);
             }
-            return result;
+            
+            return userResult;
 
         }
 
         public async Task<SignInResult> SignIn(LoginViewModel model)
         {
-            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
+            var user = _userManager.Users.FirstOrDefault(u => u.UserName == model.Login||u.Name==model.Login);
+            var result= await _signInManager.PasswordSignInAsync(user.UserName, model.Password, false, false);
+
 
             return result;
         }

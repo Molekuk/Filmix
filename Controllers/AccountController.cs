@@ -1,8 +1,12 @@
 ﻿using Filmix.Managers.Account;
 using Filmix.Models.AccountModels;
+using Filmix.Models.EmailModels;
+using Filmix.Services;
+using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using MimeKit;
 using System.Threading.Tasks;
 
 namespace Filmix.Controllers
@@ -17,8 +21,9 @@ namespace Filmix.Controllers
 
         [HttpGet]
         [Route("/Register")]
-        public IActionResult Register()
+        public async Task<IActionResult> Register()
         {
+
             return View();
         }
 
@@ -31,13 +36,14 @@ namespace Filmix.Controllers
                 var result = await _accountManager.Register(model);
                 if (result.Succeeded)
                 {
+
                     return RedirectToAction("Index", "Filmix");
                 }
                 else
                 {
                     foreach (var error in result.Errors)
                     {
-                        ModelState.AddModelError("", error.Description);
+                        ModelState.AddModelError("", error);
                     }
                 }
             }
@@ -45,11 +51,18 @@ namespace Filmix.Controllers
         }
 
 
+        [Route("/ConfirmEmail")]
+        public IActionResult ConfirmEmail(string token)
+        { 
+            return Content($"Код был {token}");
+        }
+
+
         [HttpGet]
         [Route("/Login")]
-        public IActionResult Login(string returnUrl=null)
+        public IActionResult Login()
         {
-            return View(new LoginViewModel { ReturnUrl=returnUrl});
+            return View(new LoginViewModel ());
         }
 
         [HttpPost]
@@ -62,14 +75,7 @@ namespace Filmix.Controllers
                 var result = await _accountManager.SignIn(model);
                 if (result.Succeeded)
                 {
-                    if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
-                    {
-                        return Redirect(model.ReturnUrl);
-                    }
-                    else
-                    {
                         return RedirectToAction("Index", "Filmix");
-                    }
                 }
                 else
                 {

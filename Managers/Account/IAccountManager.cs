@@ -6,7 +6,7 @@ namespace Filmix.Managers.Account
 {
     public interface IAccountManager
     {
-        Task<IdentityResult> Register(RegisterViewModel model);
+        Task<RegisterResult> Register(RegisterViewModel model);
         Task<SignInResult> SignIn(LoginViewModel model);
         Task SignOut();
 

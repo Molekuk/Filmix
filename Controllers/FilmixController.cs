@@ -53,7 +53,7 @@ namespace Filmix.Controllers
 
 
         public async Task<IActionResult> Genres()
-        {
+        { 
             var genres = await _genreManager.GetGenresViewModelAsync();
             return View(genres);
         }
