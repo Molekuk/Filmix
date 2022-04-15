@@ -3,6 +3,7 @@ using Filmix.Managers.Actors;
 using Filmix.Managers.Films;
 using Filmix.Managers.Genres;
 using Filmix.Models.AccountModels;
+using Filmix.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -42,8 +43,8 @@ namespace Filmix
                 options.Password.RequireDigit = false;
                 options.Password.RequireUppercase = false;
                 options.Password.RequireLowercase = false;
-                
-            }).AddEntityFrameworkStores<ApplicationContext>();
+            }).AddEntityFrameworkStores<ApplicationContext>().AddDefaultTokenProviders();
+
 
             services.AddControllersWithViews();
 
@@ -51,6 +52,7 @@ namespace Filmix
             services.AddScoped<IFilmManager, FilmManager>();
             services.AddScoped<IActorManager, ActorManager>();
             services.AddScoped<IGenreManager, GenreManager>();
+            services.AddScoped<IEmailService,EmailService>();
 
         }
 
