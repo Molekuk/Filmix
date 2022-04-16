@@ -21,9 +21,8 @@ namespace Filmix.Controllers
 
         [HttpGet]
         [Route("/Register")]
-        public async Task<IActionResult> Register()
+        public IActionResult Register()
         {
-
             return View();
         }
 
@@ -37,7 +36,7 @@ namespace Filmix.Controllers
                 if (result.Succeeded)
                 {
 
-                    return RedirectToAction("Index", "Filmix");
+                    return View("ConfirmEmail");
                 }
                 else
                 {
@@ -51,18 +50,27 @@ namespace Filmix.Controllers
         }
 
 
-        [Route("/ConfirmEmail")]
-        public IActionResult ConfirmEmail(string token)
-        { 
-            return Content($"Код был {token}");
-        }
 
 
         [HttpGet]
         [Route("/Login")]
         public IActionResult Login()
         {
-            return View(new LoginViewModel ());
+            return View(new LoginViewModel());
+        }
+
+        [Route("/ConfirmEmail")]
+        public async Task<IActionResult> ConfirmEmail([FromServices] IEmailService emailService,string userId, string token)
+        {
+            var result =  await _accountManager.ConfirmEmailAsync(userId, token);
+            if (result.Succeeded)
+            {
+                var email = await _accountManager.GetUserEmailAsync(userId);
+                await emailService.SendSuccessRegisterEmailAsync(email);
+                return RedirectToAction("Login", "Account");
+            }
+            else
+                return Content("Ошибка");
         }
 
         [HttpPost]
@@ -79,7 +87,10 @@ namespace Filmix.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Неверный логин или пароль");
+                    foreach(var error in result.Errors)
+                    {
+                        ModelState.AddModelError("", error);
+                    }
                 }
             }
             return View(model);

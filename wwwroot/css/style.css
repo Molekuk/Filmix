@@ -423,3 +423,13 @@ header {
 }
 
 /*#endregion Актеры*/
+
+
+
+.confirm {
+    font-size: 30px;
+    color: red;
+    position: absolute;
+    margin-top:2%;
+    margin-left:1%;
+}

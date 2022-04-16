@@ -5,7 +5,8 @@ namespace Filmix.Services
 {
     public interface IEmailService
     {
-        Task<bool> SendEmailAsync(string email,string token);
+        Task<bool> SendConfirmEmailAsync(string email,string token, string userId);
+        Task SendSuccessRegisterEmailAsync(string email);
 
         EmailConfiguration GetConfiguration();
     }
