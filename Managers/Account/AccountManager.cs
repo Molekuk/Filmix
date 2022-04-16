@@ -1,9 +1,11 @@
 ﻿using Filmix.Models.AccountModels;
 using Filmix.Services;
 using Microsoft.AspNetCore.Identity;
+using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Filmix.Managers.Account
 {
@@ -19,10 +21,10 @@ namespace Filmix.Managers.Account
             EmailService = emailService;
         }
 
-        public async Task<RegisterResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model)
         {
             User user = new User { Email=model.Email,UserName=model.Email, Name = model.Name};
-            RegisterResult userResult = new RegisterResult();
+            ActionResult userResult = new ActionResult();
 
             if (_userManager.Users.Any(u => u.Name == user.Name))
             {
@@ -39,27 +41,73 @@ namespace Filmix.Managers.Account
 
             if (userResult.Succeeded)
             {
-                userResult.Succeeded = true;
                 var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                await EmailService.SendEmailAsync(user.Email, token);
+                var code = HttpUtility.UrlEncode(token);
+                await EmailService.SendConfirmEmailAsync(user.Email, code, user.Id);
             }
-            
+
             return userResult;
 
         }
 
-        public async Task<SignInResult> SignIn(LoginViewModel model)
+        public async Task<ActionResult> SignIn(LoginViewModel model)
         {
+            ActionResult userResult = new ActionResult();
             var user = _userManager.Users.FirstOrDefault(u => u.UserName == model.Login||u.Name==model.Login);
-            var result= await _signInManager.PasswordSignInAsync(user.UserName, model.Password, false, false);
+
+            if (user != null)
+            {
+                if(!await _userManager.IsEmailConfirmedAsync(user))
+                {
+                    userResult.Errors.Add("Вы не подтвердили свой email");
+                    return userResult;
+                }
+            }
+            else
+            {
+                userResult.Errors.Add("Неправильный логин или пароль");
+                return userResult;
+            }
+
+            userResult.Succeeded = (await _signInManager.PasswordSignInAsync(user.UserName, model.Password, false, false)).Succeeded;
+            
+            if(!userResult.Succeeded)
+                userResult.Errors.Add("Неправильный логин или пароль");
 
 
-            return result;
+            return userResult;
         }
 
         public async Task SignOut()
         {
             await _signInManager.SignOutAsync();
+        }
+
+        public async Task<ActionResult> ConfirmEmailAsync(string userId, string token)
+        {
+            ActionResult userResult = new ActionResult();
+            if (userId == null || token == null)
+            {
+                userResult.Succeeded = false;
+                return userResult;
+            }
+
+            var user = await _userManager.FindByIdAsync(userId);
+
+            if (user == null)
+            {
+                userResult.Succeeded = false;
+                return userResult;
+            }
+
+            userResult.Succeeded = (await _userManager.ConfirmEmailAsync(user, token)).Succeeded;
+            
+            return userResult;
+        }
+
+        public async Task<string> GetUserEmailAsync(string userId)
+        {
+            return (await _userManager.FindByIdAsync(userId)).Email;
         }
     }
 }
