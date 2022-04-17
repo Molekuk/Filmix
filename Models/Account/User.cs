@@ -6,10 +6,6 @@ namespace Filmix.Models.AccountModels
 {
     public class User:IdentityUser
     {
-        [Required]
-        [MaxLength(30)]
-        public string Name { get; set; }
-        
 
     }
 }

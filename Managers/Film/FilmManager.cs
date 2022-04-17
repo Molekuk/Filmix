@@ -35,7 +35,7 @@ namespace Filmix.Managers.Films
                 Year = f.Year,
                 Rating = f.Rating,
                 GenreNames = f.Genres.Select(g=>g.Name), 
-                Image =f.Image
+                Image =f.PosterImage
             }).ToListAsync();
         }
 

@@ -5,6 +5,8 @@
         <link rel="stylesheet" href="~/css/style.css" >
         <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@200&family=Saira:wght@300&family=Scada&display=swap&family=Comfortaa&display=swap" rel="stylesheet">
         <link href="https://vjs.zencdn.net/7.18.1/video-js.css" rel="stylesheet" />
+        <script src="https://vjs.zencdn.net/7.18.1/video.min.js"></script>
+
         <script src=~/js/scripts.js></script>
     </head>
 
@@ -47,15 +49,25 @@
     @if(User.Identity.IsAuthenticated)
     {
         <div class="header_elem">
-
-            <a asp-controller="Account" asp-action="Logout">ВЫХОД</a>
+            <svg width="1" height="56" viewBox="0 0 1 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="0.5" x2="0.5" y2="58" stroke="black"/>
+            </svg>
+            <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.5 0C7.84 0 0 7.84 0 17.5C0 27.16 7.84 35 17.5 35C27.16 35 35 27.16 35 17.5C35 7.84 27.16 0 17.5 0ZM17.5 5.25C20.405 5.25 22.75 7.595 22.75 10.5C22.75 13.405 20.405 15.75 17.5 15.75C14.595 15.75 12.25 13.405 12.25 10.5C12.25 7.595 14.595 5.25 17.5 5.25ZM17.5 30.1C13.125 30.1 9.2575 27.86 7 24.465C7.0525 20.9825 14 19.075 17.5 19.075C20.9825 19.075 27.9475 20.9825 28 24.465C25.7425 27.86 21.875 30.1 17.5 30.1Z" fill="#F2E6D8"/>
+            </svg>
+            <a asp-controller="Account" asp-action="Logout" style="margin-right:10px">ВЫХОД</a>
         </div>
     }
     else
     {
         <div class="header_elem">
-
-            <a asp-controller="Account" asp-action="Login">ВХОД</a>
+            <svg width="1" height="56" viewBox="0 0 1 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="0.5" x2="0.5" y2="58" stroke="black"/>
+            </svg>
+            <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.5 0C7.84 0 0 7.84 0 17.5C0 27.16 7.84 35 17.5 35C27.16 35 35 27.16 35 17.5C35 7.84 27.16 0 17.5 0ZM17.5 5.25C20.405 5.25 22.75 7.595 22.75 10.5C22.75 13.405 20.405 15.75 17.5 15.75C14.595 15.75 12.25 13.405 12.25 10.5C12.25 7.595 14.595 5.25 17.5 5.25ZM17.5 30.1C13.125 30.1 9.2575 27.86 7 24.465C7.0525 20.9825 14 19.075 17.5 19.075C20.9825 19.075 27.9475 20.9825 28 24.465C25.7425 27.86 21.875 30.1 17.5 30.1Z" fill="#F2E6D8"/>
+            </svg>
+            <a asp-controller="Account" asp-action="Login" style="margin-right:10px">ВХОД</a>
         </div>
     }
 

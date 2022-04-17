@@ -8,9 +8,11 @@ using System.Linq;
 using System.Collections.Generic;
 using Filmix.Models.FilmModels;
 using Filmix.Models.GenreModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Filmix.Controllers
 {
+    [Authorize(Roles ="admin")]
     public class ContentController : Controller
     {
         private readonly IFilmManager _filmManager;

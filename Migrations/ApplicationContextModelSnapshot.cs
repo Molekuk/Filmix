@@ -74,11 +74,6 @@ namespace Filmix.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -132,7 +127,7 @@ namespace Filmix.Migrations
                     b.Property<int>("FilmCount")
                         .HasColumnType("int");
 
-                    b.Property<string>("GenreName")
+                    b.Property<string>("Genres")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<byte>("Height")
@@ -142,7 +137,6 @@ namespace Filmix.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PlaceBirth")
@@ -176,10 +170,13 @@ namespace Filmix.Migrations
                         .HasMaxLength(8)
                         .HasColumnType("nvarchar(8)");
 
-                    b.Property<string>("Image")
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("PlayerImage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PosterImage")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Producer")
@@ -191,9 +188,11 @@ namespace Filmix.Migrations
                     b.Property<string>("Slug")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Video")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Year")
-                        .HasMaxLength(4)
-                        .HasColumnType("nvarchar(4)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -221,7 +220,7 @@ namespace Filmix.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("GenreName");
+                    b.ToTable("Genres");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

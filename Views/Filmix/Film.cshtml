@@ -3,7 +3,7 @@
     ViewBag.Title = @Model.Name;
 }
 <div class="curr_film" style="margin: 30px">
-        <img src="~/img/Films/@Model.Image" >
+        <img src="~/img/Films/Poster/@Model.PosterImage" >
 
          <div class="curr_film_info">
 
@@ -64,3 +64,36 @@
                 <script>setColor('rating')</script>
          </div>
 </div>
+
+@if (User.Identity.IsAuthenticated)
+{
+   <div class="player">
+        <video
+        id="my-video"
+        class="video-js"
+        controls
+        preload="auto"
+        width="1000"
+        height="563"
+        poster="~/img/Films/Player/@Model.PlayerImage"
+        data-setup="{}"
+      >
+        <source src="~/video/@Model.Video" type="video/mp4" />
+        <source src="MY_VIDEO.webm" type="video/webm" />
+        <p class="vjs-no-js">
+          To view this video please enable JavaScript, and consider upgrading to a
+          web browser that
+          <a href="https://videojs.com/html5-video-support/" target="_blank"
+            >supports HTML5 video</a
+          >
+        </p>
+      </video>
+  </div>
+ 
+}
+else
+{
+    <div class="player" style="background-image:url(/img/Films/Player/@Model.PlayerImage);background-size:cover;width:1000px;height:564px;margin-left:20%;">
+        <h1 style="color:red">Для просмотра фильма необходимо авторизоваться</h1>
+    </div>
+}
