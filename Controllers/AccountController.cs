@@ -1,4 +1,5 @@
 ﻿using Filmix.Managers.Account;
+using Filmix.Managers.Roles;
 using Filmix.Models.AccountModels;
 using Filmix.Models.EmailModels;
 using Filmix.Services;
@@ -18,6 +19,11 @@ namespace Filmix.Controllers
         public AccountController(IAccountManager accountManager)
         {
             _accountManager = accountManager;
+        }
+
+        public IActionResult AccessDenied()
+        {
+            return RedirectToAction("Index","Filmix");
         }
 
         [HttpGet]
@@ -84,7 +90,7 @@ namespace Filmix.Controllers
                 var result = await _accountManager.SignIn(model);
                 if (result.Succeeded)
                 {
-                        return RedirectToAction("Index", "Filmix");
+                    return RedirectToAction("Index", "Filmix");
                 }
                 else
                 {

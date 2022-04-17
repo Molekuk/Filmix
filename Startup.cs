@@ -2,6 +2,7 @@ using Filmix.Managers.Account;
 using Filmix.Managers.Actors;
 using Filmix.Managers.Films;
 using Filmix.Managers.Genres;
+using Filmix.Managers.Roles;
 using Filmix.Models.AccountModels;
 using Filmix.Services;
 using Microsoft.AspNetCore.Builder;
@@ -44,19 +45,24 @@ namespace Filmix
                 options.Password.RequireDigit = false;
                 options.Password.RequireUppercase = false;
                 options.Password.RequireLowercase = false;
-            }).AddEntityFrameworkStores<ApplicationContext>().AddDefaultTokenProviders().AddRoles<IdentityRole>();
+            }).AddEntityFrameworkStores<ApplicationContext>().AddDefaultTokenProviders();
 
 
 
 
             services.AddControllersWithViews();
 
+            //Managers
             services.AddScoped<IAccountManager, AccountManager>();
             services.AddScoped<IFilmManager, FilmManager>();
             services.AddScoped<IActorManager, ActorManager>();
             services.AddScoped<IGenreManager, GenreManager>();
-            services.AddScoped<IEmailService,EmailService>();
+            services.AddScoped<IRoleManager, RoleManager>();
 
+
+            //Services
+            services.AddScoped<IEmailService,EmailService>();
+            
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

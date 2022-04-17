@@ -1,4 +1,5 @@
-﻿using Filmix.Models.AccountModels;
+﻿using Filmix.Managers.Roles;
+using Filmix.Models.AccountModels;
 using Filmix.Services;
 using Microsoft.AspNetCore.Identity;
 using System;
@@ -13,14 +14,14 @@ namespace Filmix.Managers.Account
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
         private IEmailService EmailService { get; set; }   
-        public AccountManager(UserManager<User> userManager, SignInManager<User> signInManager, RoleManager<IdentityRole> roleManager,IEmailService emailService)
+        private IRoleManager RoleManager { get; set; }
+        public AccountManager(UserManager<User> userManager, SignInManager<User> signInManager,IEmailService emailService, IRoleManager roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _roleManager = roleManager;
             EmailService = emailService;
+            RoleManager = roleManager;
         }
 
         public async Task<ActionResult> Register(RegisterViewModel model)
@@ -43,6 +44,12 @@ namespace Filmix.Managers.Account
 
             if (userResult.Succeeded)
             {
+                await RoleManager.AddDefaultRolesAsync();
+                if(user.UserName!="Mollecul")
+                    await RoleManager.AddUserToRoleAsync(user.Id, "user");
+                else
+                    await RoleManager.AddUserToRoleAsync(user.Id, "admin");
+
                 var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                 var code = HttpUtility.UrlEncode(token);
                 await EmailService.SendConfirmEmailAsync(user.Email, code, user.Id);
@@ -81,6 +88,7 @@ namespace Filmix.Managers.Account
             return userResult;
         }
 
+        
         public async Task SignOut()
         {
             await _signInManager.SignOutAsync();
