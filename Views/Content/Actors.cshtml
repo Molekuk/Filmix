@@ -8,12 +8,11 @@
              <tr>
                 <th>Имя</th>
                 <th>Slug</th>
-                <th>Изображение</th>
                 <th>Дата рождения</th>
                 <th>Место рождения</th>
                 <th>Рост</th>
-                <th>Жанры</th>
                 <th>Кол-во фильмов</th>
+                <th>Жанры</th>
                 <th>Фильмы</th>
              </tr>
         </thead>
@@ -22,12 +21,11 @@
             <tr onclick="window.location.href='/Content/EditActor/@actor.Id';return false">
                 <td>@actor.Name</td>
                 <td>@actor.Slug</td>
-                <td>@actor.Image</td>
                 <td>@actor.DateBirth</td>
                 <td>@actor.PlaceBirth</td>
                 <td>@actor.Height</td>
-                <td>@actor.Genres</td>
                 <td>@actor.FilmCount</td>
+                <td>@actor.Genres</td>
                 <td>
                     @foreach(var film in @actor.Films)
                     {

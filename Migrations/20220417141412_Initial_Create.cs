@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Filmix.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Initial_Create : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +13,7 @@ namespace Filmix.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Slug = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateBirth = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -46,7 +46,6 @@ namespace Filmix.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -76,13 +75,15 @@ namespace Filmix.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Slug = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Duration = table.Column<string>(type: "nvarchar(8)", maxLength: 8, nullable: true),
-                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PosterImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PlayerImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Video = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Producer = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Company = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Rating = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Year = table.Column<string>(type: "nvarchar(4)", maxLength: 4, nullable: true)
+                    Year = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

@@ -18,8 +18,14 @@ namespace Filmix.Models.FilmModels
         [Display(Name = "Длительность")]
         public string Duration { get; set; }
 
-        [Display(Name = "Название изображения")]
-        public string Image { get; set; }
+        [Display(Name = "Название изображения для постера")]
+        public string PosterImage { get; set; }
+
+        [Display(Name = "Название изображения для плеера")]
+        public string PlayerImage { get; set; }
+
+        [Display(Name = "Название видеофайла")]
+        public string Video { get; set; }
 
         [Display(Name = "Описание")]
         public string Description { get; set; }

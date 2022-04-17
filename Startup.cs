@@ -44,7 +44,7 @@ namespace Filmix
                 options.Password.RequireDigit = false;
                 options.Password.RequireUppercase = false;
                 options.Password.RequireLowercase = false;
-            }).AddEntityFrameworkStores<ApplicationContext>().AddDefaultTokenProviders();
+            }).AddEntityFrameworkStores<ApplicationContext>().AddDefaultTokenProviders().AddRoles<IdentityRole>();
 
 
 

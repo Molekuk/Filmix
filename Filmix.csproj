@@ -6,9 +6,9 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\img\Actors\" />
-    <Folder Include="wwwroot\img\Films\" />
+    <Folder Include="wwwroot\img\Films\Player\" />
     <Folder Include="wwwroot\img\Genres\" />
-    <Folder Include="wwwroot\mp4\" />
+    <Folder Include="wwwroot\video\" />
   </ItemGroup>
 
   <ItemGroup>

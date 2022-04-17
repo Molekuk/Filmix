@@ -13,27 +13,29 @@ namespace Filmix.Managers.Account
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private IEmailService EmailService { get; set; }   
-        public AccountManager(UserManager<User> userManager, SignInManager<User> signInManager,IEmailService emailService)
+        public AccountManager(UserManager<User> userManager, SignInManager<User> signInManager, RoleManager<IdentityRole> roleManager,IEmailService emailService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
             EmailService = emailService;
         }
 
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            User user = new User { Email=model.Email,UserName=model.Email, Name = model.Name};
+            User user = new User {Email=model.Email,UserName=model.Name};
             ActionResult userResult = new ActionResult();
 
-            if (_userManager.Users.Any(u => u.Name == user.Name))
-            {
-                userResult.Errors.Add("Пользователь с таким именем уже существует");
-                userResult.Succeeded = false;
-            }
-            else if (_userManager.Users.Any(u => u.UserName == user.UserName))
+            if ( (await _userManager.FindByEmailAsync(model.Email))!=null)
             {
                 userResult.Errors.Add("Пользователь с таким email уже существует");
+                userResult.Succeeded = false;
+            }
+            else if ((await _userManager.FindByNameAsync(model.Name)) != null)
+            {
+                userResult.Errors.Add("Пользователь с таким именем уже существует");
                 userResult.Succeeded = false;
             }
             else
@@ -53,7 +55,7 @@ namespace Filmix.Managers.Account
         public async Task<ActionResult> SignIn(LoginViewModel model)
         {
             ActionResult userResult = new ActionResult();
-            var user = _userManager.Users.FirstOrDefault(u => u.UserName == model.Login||u.Name==model.Login);
+            var user = _userManager.Users.FirstOrDefault(u => u.UserName == model.Login||u.Email==model.Login);
 
             if (user != null)
             {
@@ -68,8 +70,9 @@ namespace Filmix.Managers.Account
                 userResult.Errors.Add("Неправильный логин или пароль");
                 return userResult;
             }
-
             userResult.Succeeded = (await _signInManager.PasswordSignInAsync(user.UserName, model.Password, false, false)).Succeeded;
+
+
             
             if(!userResult.Succeeded)
                 userResult.Errors.Add("Неправильный логин или пароль");

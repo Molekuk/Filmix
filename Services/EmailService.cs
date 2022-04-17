@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using MimeKit;
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Web;
 
@@ -38,7 +39,7 @@ namespace Filmix.Services
             mimeMessage.From.Add(new MailboxAddress("Filmix", config.SmtpEmail));
             mimeMessage.To.Add(new MailboxAddress(" ", email));
             mimeMessage.Subject = "Подтверждение регистрации";
-            mimeMessage.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = $"<a href='https://localhost:44343/ConfirmEmail?token={token}&userId={userId}'>Жмякай сюда</a>" };
+            mimeMessage.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = $"<a href='https://localhost:44343/ConfirmEmail?token={token}&userId={userId}'>Для подтверждения регистрации нажмите сюда</a>" };
             
             try
             {
@@ -81,9 +82,9 @@ namespace Filmix.Services
                     await client.DisconnectAsync(true);
                 }
             }
-            catch
+            catch(Exception ex)
             {
-
+                 Debug.Fail(ex.Message);
             }
 
 

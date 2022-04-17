@@ -3,6 +3,7 @@ using Filmix.Models.AccountModels;
 using Filmix.Models.EmailModels;
 using Filmix.Services;
 using MailKit.Net.Smtp;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -96,6 +97,7 @@ namespace Filmix.Controllers
             return View(model);
         }
 
+        [Authorize]
         public async Task<IActionResult> Logout()
         {
             await _accountManager.SignOut();
