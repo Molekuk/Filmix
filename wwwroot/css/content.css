@@ -138,59 +138,65 @@
         font-size: 30px;
 }
 
-.back_button {
+.table_back_button {
     font-size: 50px;
     transition: 0.8s;
     text-decoration: none;
     color: #3a3eac;
 }
 
-.back_button:hover {
+.table_back_button:hover {
         color: #a40000;
         font-size: 60px;
 }
 
-.change_button {
-    color: black;
-    text-decoration: none;
-    font-size: 15px;
-}
 
-.change_button:hover {
-        color: #a40000;
-}
 
 
 /*#endregion*/
 
-/*#region Кнопки действий*/
 
-/*#endregion*/
 
 /*#region Форма изменения данных*/
 .form {
-    float: left;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
 }
 
 .form_field{
-    clear:both;
-    text-align:right;
-    line-height:30px;
+    height:25px;
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    margin-top:7px;
 }
 
-.form_field label{
-    float:left;
-    padding-right:30px;
+.form_field input{
+    border-radius:3px;
+    border-style:solid;
+    border-width:2px;
+    border-color:black;
 }
+
+.form_field input:hover {
+        border-color: #f28727;
+    }
 
 .form_description{
     position:absolute;
     margin-left:40%;
 }
+
 .form_description textarea {
-        resize:none;
+        resize: none;
         width: 481px;
         height: 260px;
+
+        border-radius: 3px;
+        border-style: solid;
+        border-width: 2px;
+        border-color: black;
 }
 
 .form_container{
@@ -198,7 +204,100 @@
     flex-direction:column;
     align-items:flex-start;
     justify-content:space-between;
+    margin-left:30px;
+    margin-top:30px
 }
+
+.form_buttons {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+
+    margin-top: 60px;
+}
+
+.delete_button {
+    text-decoration: none;
+    width: 300px;
+    height: 40px;
+    background: #83A7C9;
+    border-color: black;
+    border-style: solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    transition: 0.5s;
+    text-decoration: none;
+    color: #3a3eac;
+    border-radius:10px;
+}
+.delete_button:hover{
+    background:red;
+    color:black;
+}
+
+.save_button {
+    margin-top:10px;
+    text-decoration: none;
+    width: 300px;
+    height: 30px;
+    background: #83A7C9;
+    border-color: black;
+    border-style: solid;
+    border-width: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    transition: 0.5s;
+    text-decoration: none;
+    color: #3a3eac;
+    border-radius: 10px;
+    align-self:center;
+}
+.save_button:hover{
+    cursor:pointer;
+    background: green;
+        color: black;
+}
+
+.change_button {
+    text-decoration: none;
+    width: 300px;
+    height: 40px;
+    background: #83A7C9;
+    border-color: black;
+    border-style: solid;
+    border-width: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    transition: 0.5s;
+    text-decoration: none;
+    color: #3a3eac;
+    border-radius: 10px;
+}
+
+.change_button:hover {
+        background: #5687b5;
+        color: #a40000;
+    }
+
+.form_back_button {
+    margin-top:120px;
+    font-size: 50px;
+    transition: 0.8s;
+    text-decoration: none;
+    color: #3a3eac;
+    align-self: center;
+}
+
+.form_back_button:hover {
+        color: #a40000;
+        font-size: 60px;
+    }
 /*#endregion*/
 
 
