@@ -1,5 +1,6 @@
 ﻿using Filmix.Models.AccountModels;
 using Microsoft.AspNetCore.Identity;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Filmix.Managers.Roles
@@ -16,10 +17,18 @@ namespace Filmix.Managers.Roles
 
         public async Task AddDefaultRolesAsync()
         {
-            var user = new IdentityRole("user");
-            var admin = new IdentityRole("admin");
-            await _roleManager.CreateAsync(user);
-            await _roleManager.CreateAsync(admin);
+            if(!await _roleManager.RoleExistsAsync("user"))
+            {
+                var user = new IdentityRole("user");
+                await _roleManager.CreateAsync(user);
+
+            }
+            if(!await _roleManager.RoleExistsAsync("admin"))
+            {
+                var admin = new IdentityRole("admin");
+                await _roleManager.CreateAsync(admin);
+            }
+           
         }
 
 

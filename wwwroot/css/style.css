@@ -441,3 +441,18 @@ header {
     margin-top:2%;
     margin-left:1%;
 }
+
+.content_button {
+    text-decoration: none;
+    color: white;
+    font-family: 'Scada', sans-serif;
+    font-size: 20px;
+    position: absolute;
+    top: 0;
+    margin-left: 24%;
+    margin-top: 20px;
+}
+
+.content_button:hover {
+    color:black;
+}
