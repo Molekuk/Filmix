@@ -6,56 +6,52 @@
     <div class="form_field">
         <label asp-for="Name"></label>
         <input asp-for="Name"/>
-        <span asp-validation-for="Name"></span>
     </div>
     
     <div class="form_field">
         <label asp-for="Slug"></label>
         <input asp-for="Slug"/>
-        <span asp-validation-for="Slug"></span>
     </div>
 
     <div class="form_field">
         <label asp-for="Image"></label>
         <input asp-for="Image"/>
-        <span asp-validation-for="Image"></span>
     </div>
 
     <div class="form_field">
         <label asp-for="DateBirth"></label>
         <input asp-for="DateBirth"/>
-        <span asp-validation-for="DateBirth"></span>
     </div class="form_field">
 
     <div class="form_field">
         <label asp-for="PlaceBirth"></label>
         <input asp-for="PlaceBirth"/>
-        <span asp-validation-for="PlaceBirth"></span>
     </div>
 
     <div class="form_field">
         <label asp-for="Height"></label>
         <input asp-for="Height"/>
-        <span asp-validation-for="Height"></span>
     </div>
 
     <div class="form_field">
         <label asp-for="Genres"></label>
         <input asp-for="Genres"/>
-        <span asp-validation-for="Genres"></span>
     </div>
 
     <div class="form_field">
         <label asp-for="FilmCount"></label>
         <input asp-for="FilmCount"/>
-        <span asp-validation-for="FilmCount"></span>
     </div>
     
 
-    <input  type="submit" value="Сохранить"/>
-    <a class="change_button"  asp-action="ChangeFilmsInActor" asp-route-actorId="@Model.Id">Изменить фильмы актера</a>
-    <a class="change_button"  asp-action="DeleteActor" asp-route-actorId="@Model.Id">Удалить актера</a>
+    <input class="save_button"  type="submit" value="Сохранить"/>
+    
 
 </form>
-<a class="back_button" asp-action="Actors" asp-controller="Content">Назад</a>
+<div class = "form_buttons">
+    <a class="change_button"  asp-action="ChangeFilmsInActor" asp-route-actorId="@Model.Id">Изменить фильмы актера</a>
+    <a class="delete_button"  asp-action="DeleteActor" asp-route-actorId="@Model.Id">Удалить актера</a>
+</div>
+
+<a class="form_back_button" asp-action="Actors" asp-controller="Content">Назад</a>
 </div>

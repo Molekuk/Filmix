@@ -6,30 +6,31 @@
     <div class="form_field">
         <label asp-for="Name"></label>
         <input asp-for="Name"/>
-        <span asp-validation-for="Name"></span>
     </div>
     
     <div class="form_field">
         <label asp-for="Slug"></label>
         <input asp-for="Slug"/>
-        <span asp-validation-for="Slug"></span>
     </div>
 
     <div class="form_field">
         <label asp-for="Image"></label>
         <input asp-for="Image"/>
-        <span asp-validation-for="Image"></span>
     </div>
 
     <div class="form_field">
         <label asp-for="BackgroundImage"></label>
         <input asp-for="BackgroundImage"/>
-        <span asp-validation-for="BackgroundImage"></span>
-    </div class="form_field">    
+    </div>    
 
-    <input type="submit" value="Сохранить"/>
-    <a class="change_button" asp-action="ChangeFilmsInGenre" asp-route-GenreId="@Model.Id">Изменить фильмы жанра</a>
-    <a class="change_button"  asp-action="DeleteGenre" asp-route-genreId="@Model.Id">Удалить жанр</a>
+    <input class="save_button" type="submit" value="Сохранить"/>
+    
 </form>
-<a class="back_button" asp-action="Genres" asp-controller="Content">Назад</a>
+
+<div class = "form_buttons">
+    <a class="change_button" asp-action="ChangeFilmsInGenre" asp-route-GenreId="@Model.Id">Изменить фильмы жанра</a>
+    <a class="delete_button"  asp-action="DeleteGenre" asp-route-genreId="@Model.Id">Удалить жанр</a>
+</div>
+
+<a class="form_back_button" asp-action="Genres" asp-controller="Content">Назад</a>
 </div>

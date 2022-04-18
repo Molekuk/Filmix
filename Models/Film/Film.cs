@@ -14,7 +14,6 @@ namespace Filmix.Models.FilmModels
         public string Name { get; set; }
         public string Slug { get; set; }
 
-        [MaxLength(8)]
         [Display(Name = "Длительность")]
         public string Duration { get; set; }
 
@@ -40,11 +39,9 @@ namespace Filmix.Models.FilmModels
         public string Company { get; set; }
 
         [Display(Name = "Рейтинг")]
-        [Range(0,10,ErrorMessage ="Число должно быть от 1 до 10")]
         public decimal Rating { get; set; }
 
         [Display(Name = "Год")]
-        [Range(0,2022,ErrorMessage = "Некорректный год")]
         public string Year { get; set; }
 
         public  List<Genre> Genres { get; set; }
