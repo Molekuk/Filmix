@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<Filmix.Models.ActorModels.Actor>
 
+<div class="table_page">
+    <h1>Редактор актеров</h1>
 
-<h1>Редактор актеров</h1>
-<div>
     <table class="table">
         <thead>
              <tr>
@@ -36,6 +36,9 @@
         }
 
     </table>
-    <a class="action_button" asp-action="AddActor" asp-controller="Content">Добавить актера</a>
+    <div class = "table_buttons">
+        <a class="add_button" asp-action="AddActor" asp-controller="Content">Добавить актера</a>
+
+        <a class="back_button" asp-action="Home" asp-controller="Content">Назад</a>
+    </div>
 </div>
-<a class="back_button" asp-action="Home" asp-controller="Content">Назад</a>

@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<Filmix.Models.GenreModels.Genre>
 
-
+<div class="table_page">
 <h1>Редактор жанров</h1>
-<div>
+
     <table class="table">
         <thead>
              <tr>
@@ -32,6 +32,11 @@
         }
 
     </table>
-    <a class="action_button" asp-action="AddGenre" asp-controller="Content">Добавить жанр</a>
+
+    <div class = "table_buttons">
+        <a class="add_button" asp-action="AddGenre" asp-controller="Content">Добавить жанр</a>
+
+        <a class="back_button" asp-action="Home" asp-controller="Content">Назад</a>
+    </div>
+
 </div>
-<a class="back_button" asp-action="Home" asp-controller="Content">Назад</a>

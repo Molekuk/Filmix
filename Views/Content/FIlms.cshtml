@@ -1,8 +1,10 @@
 ﻿@model IEnumerable<Filmix.Models.FilmModels.Film>
 
 
-<h1>Редактор фильмов</h1>
-<div>
+
+<div class="table_page">
+    <h1>Редактор фильмов</h1>
+
     <table class="table">
         <thead>
              <tr>
@@ -49,6 +51,10 @@
         }
 
     </table>
-    <a class="action_button" asp-action="AddFilm" asp-controller="Content">Добавить фильм</a>
+    <div class = "table_buttons">
+        <a class="add_button" asp-action="AddFilm" asp-controller="Content">Добавить фильм</a>
+
+        <a class="back_button" asp-action="Home" asp-controller="Content">Назад</a>
+    </div>
+    
 </div>
-<a class="back_button" asp-action="Home" asp-controller="Content">Назад</a>
