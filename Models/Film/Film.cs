@@ -12,7 +12,9 @@ namespace Filmix.Models.FilmModels
 
         [Display(Name ="Название")]
         public string Name { get; set; }
-        public string Slug { get; set; }
+
+        [Display(Name = "Название по-английски")]
+        public string EngName { get; set; }
 
         [Display(Name = "Длительность")]
         public string Duration { get; set; }

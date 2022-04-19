@@ -1,80 +1,74 @@
 ﻿@model Filmix.Models.FilmModels.Film
-
+@{
+    ViewBag.Title = "Добавление фильма";
+}
+<div class="form_container">
 <form method="post" asp-action="AddFIlm" asp-controller="Content" class="form">
     
     <div class="form_description">
         <label asp-for="Description"></label>
         <textarea asp-for="Description"></textarea>
-        <span asp-validation-for="Description"></span>
     </div>
     
     <div class="form_field">
         <label asp-for="Name"></label>
         <input asp-for="Name"/>
-        <span asp-validation-for="Name"></span>
     </div>
     
     <div class="form_field">
-        <label asp-for="Slug"></label>
-        <input asp-for="Slug"/>
-        <span asp-validation-for="Slug"></span>
+        <label asp-for="EngName"></label>
+        <input asp-for="EngName"/>
     </div>
 
     <div class="form_field">
         <label asp-for="PosterImage"></label>
         <input asp-for="PosterImage"/>
-        <span asp-validation-for="PosterImage"></span>
     </div>
 
     <div class="form_field">
         <label asp-for="PlayerImage"></label>
         <input asp-for="PlayerImage"/>
-        <span asp-validation-for="PlayerImage"></span>
     </div>
 
     <div class="form_field">
         <label asp-for="Video"></label>
         <input asp-for="Video"/>
-        <span asp-validation-for="Video"></span>
     </div>
 
     <div class="form_field">
         <label asp-for="Duration"></label>
         <input asp-for="Duration"/>
-        <span asp-validation-for="Duration"></span>
     </div class="form_field">
 
     <div class="form_field">
         <label asp-for="Country"></label>
         <input asp-for="Country"/>
-        <span asp-validation-for="Country"></span>
     </div>
 
     <div class="form_field">
         <label asp-for="Producer"></label>
         <input asp-for="Producer"/>
-        <span asp-validation-for="Producer"></span>
     </div>
 
     <div class="form_field">
         <label asp-for="Company"></label>
         <input asp-for="Company"/>
-        <span asp-validation-for="Company"></span>
     </div>
     
     <div class="form_field">
         <label asp-for="Rating"></label>
         <input asp-for="Rating"/>
-        <span asp-validation-for="Rating"></span>
     </div>
 
     <div class="form_field">
         <label asp-for="Year"></label>
         <input asp-for="Year"/>
-        <span asp-validation-for="Year"></span>
     </div>
 
 
 
-    <input type="submit" value="Сохранить"/>
+    <input class="save_button" type="submit" value="Сохранить"/>
 </form>
+    
+    <a class="form_back_button" asp-action="Films" asp-controller="Content">Назад</a>
+</div>

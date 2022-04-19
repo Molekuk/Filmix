@@ -1,6 +1,8 @@
 ﻿@model IEnumerable<Filmix.Models.FilmModels.Film>
 
-
+@{
+    ViewBag.Title = "Фильмы";
+}
 
 <div class="table_page">
     <h1>Редактор фильмов</h1>
@@ -25,7 +27,7 @@
         {
             <tr onclick="window.location.href='/Content/EditFilm/@film.Id';return false">
                 <td>@film.Name</td>
-                <td>@film.Slug</td>
+                <td>@film.EngName</td>
                 <td>@film.Duration</td>
                 <td>@film.Country</td>
                 <td>@film.Producer</td>

@@ -10,13 +10,9 @@ namespace Filmix.Models.GenreModels
 
         [Display(Name = "Название")]
         public string Name { get; set; }
-        public string Slug { get; set; }
 
         [Display(Name = "Изображение")]
         public string Image { get; set; }
-
-        [Display(Name = "Задний фон")]
-        public string BackgroundImage { get; set; }
 
         public  List<Film> Films { get; set; }
     }

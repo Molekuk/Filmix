@@ -14,7 +14,7 @@ namespace Filmix.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Slug = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EngName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateBirth = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PlaceBirth = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -73,8 +73,8 @@ namespace Filmix.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Slug = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Duration = table.Column<string>(type: "nvarchar(8)", maxLength: 8, nullable: true),
+                    EngName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Duration = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PosterImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PlayerImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Video = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -97,9 +97,7 @@ namespace Filmix.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Slug = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    BackgroundImage = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Image = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
