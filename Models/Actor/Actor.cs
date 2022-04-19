@@ -11,7 +11,8 @@ namespace Filmix.Models.ActorModels
         [Display(Name ="Имя")]
         public string Name { get; set; }
 
-        public string Slug { get; set; }
+        [Display(Name = "Имя по-английски")]
+        public string EngName { get; set; }
 
         [Display(Name = "Изображение")]
         public string Image { get; set; }

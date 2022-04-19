@@ -1,5 +1,10 @@
 ﻿@model Filmix.Models.ActorModels.Actor
 
+@{
+    ViewBag.Title = Model.Name;
+
+}
+
 <div class="form_container">
 
 <form method="post" asp-action="EditActor" asp-controller="Content" class="form">
@@ -9,8 +14,8 @@
     </div>
     
     <div class="form_field">
-        <label asp-for="Slug"></label>
-        <input asp-for="Slug"/>
+        <label asp-for="EngName"></label>
+        <input asp-for="EngName"/>
     </div>
 
     <div class="form_field">

@@ -1,5 +1,10 @@
 ﻿@model IEnumerable<Filmix.Models.GenreModels.Genre>
 
+@{
+    ViewBag.Title = "Жанры";
+}
+
+
 <div class="table_page">
 <h1>Редактор жанров</h1>
 
@@ -7,9 +12,7 @@
         <thead>
              <tr>
                 <th>Имя</th>
-                <th>Slug</th>
                 <th>Изображение</th>
-                <th>Задний фон</th>
                 <th>Фильмы</th>
              </tr>
         </thead>
@@ -18,9 +21,7 @@
         {
             <tr onclick="window.location.href='/Content/EditGenre/@genre.Id';return false">
                 <td>@genre.Name</td>
-                <td>@genre.Slug</td>
                 <td>@genre.Image</td>
-                <td>@genre.BackgroundImage</td>
                 <td>
                     @foreach(var film in genre.Films)
                     {

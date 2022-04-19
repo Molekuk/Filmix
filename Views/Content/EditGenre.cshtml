@@ -1,5 +1,9 @@
 ﻿@model Filmix.Models.GenreModels.Genre
 
+@{
+    ViewBag.Title = Model.Name;
+}
+
 <div class="form_container">
 
 <form method="post" asp-action="EditGenre" asp-controller="Content" class="form">
@@ -8,20 +12,13 @@
         <input asp-for="Name"/>
     </div>
     
-    <div class="form_field">
-        <label asp-for="Slug"></label>
-        <input asp-for="Slug"/>
-    </div>
+
 
     <div class="form_field">
         <label asp-for="Image"></label>
         <input asp-for="Image"/>
     </div>
 
-    <div class="form_field">
-        <label asp-for="BackgroundImage"></label>
-        <input asp-for="BackgroundImage"/>
-    </div>    
 
     <input class="save_button" type="submit" value="Сохранить"/>
     

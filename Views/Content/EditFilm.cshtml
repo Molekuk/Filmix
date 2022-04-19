@@ -1,5 +1,10 @@
 ﻿@model Filmix.Models.FilmModels.Film
 
+@{
+    ViewBag.Title = Model.Name;
+
+}
+
 <div class="form_container">
 
 <form method="post" asp-action="EditFilm" asp-controller="Content" class="form">
@@ -16,8 +21,8 @@
     </div>
     
     <div class="form_field">
-        <label asp-for="Slug"></label>
-        <input asp-for="Slug"/>
+        <label asp-for="EngName"></label>
+        <input asp-for="EngName"/>
     </div>
 
     <div class="form_field">
@@ -78,6 +83,6 @@
 
     </div>
     
-    <a class="form_back_button" asp-action="Home" asp-controller="Content">Назад</a>
+    <a class="form_back_button" asp-action="Films" asp-controller="Content">Назад</a>
 
 </div>

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Filmix.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20220417141412_Initial_Create")]
+    [Migration("20220419114139_Initial_Create")]
     partial class Initial_Create
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -126,6 +126,9 @@ namespace Filmix.Migrations
                     b.Property<string>("DateBirth")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("EngName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("FilmCount")
                         .HasColumnType("int");
 
@@ -142,9 +145,6 @@ namespace Filmix.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PlaceBirth")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Slug")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -169,8 +169,10 @@ namespace Filmix.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Duration")
-                        .HasMaxLength(8)
-                        .HasColumnType("nvarchar(8)");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EngName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -186,9 +188,6 @@ namespace Filmix.Migrations
 
                     b.Property<decimal>("Rating")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("Slug")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Video")
                         .HasColumnType("nvarchar(max)");
@@ -208,16 +207,10 @@ namespace Filmix.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("BackgroundImage")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Slug")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

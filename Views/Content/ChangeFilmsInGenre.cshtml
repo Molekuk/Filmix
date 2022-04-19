@@ -1,20 +1,30 @@
 ﻿@model IEnumerable<Filmix.Models.GenreModels.FilmInGenreViewModel>
 
-<h1>Добавление фильмов для жанра @ViewBag.Name</h1>
-<form method="post" asp-action="ChangeFilmsInGenre" asp-controller="Content" asp-route-GenreId="@ViewBag.Id">
-    @foreach(var film in Model)
-    {
-        <div>
-            @if(film.IsInGenre)
-            {
-                <input id="@film.FilmId" type="checkbox" name="ContainsFilmId" value="@film.FilmId" checked="checked"/>
-            }
-            else
-            {
-                <input id="@film.FilmId" type="checkbox" name="ContainsFilmId" value="@film.FilmId"/>  
-            }
-            <label for="@film.FilmId">@film.FilmName</label>
+@{
+    ViewBag.Title = $"Фильмы жанра {ViewBag.Name}";
+}
+
+<div class="change_form">
+    <h1>Изменение фильмов жанра @ViewBag.Name</h1>
+    <form method="post" asp-action="ChangeFilmsInGenre" asp-controller="Content" asp-route-GenreId="@ViewBag.Id">
+        <div class="checkbox_container">
+        @foreach(var film in Model)
+        {
+            <div class="checkbox" > 
+                @if(film.IsInGenre)
+                {
+                    <input  id="@film.FilmId" type="checkbox" name="ContainsFilmId" value="@film.FilmId" checked="checked"/>
+                }
+                else
+                {
+                    <input  id="@film.FilmId" type="checkbox" name="ContainsFilmId" value="@film.FilmId"/>  
+                }
+                <label for="@film.FilmId">@film.FilmName</label>
+           </div>
+        }
         </div>
-    }
-    <input type="submit" value="Сохранить"/>
-</form>
+        <input class="save_button" type="submit" value="Сохранить"/>
+    </form>
+
+    <a class="form_back_button" asp-action="EditGenre" asp-controller="Content" asp-route-Id="@ViewBag.Id">Назад</a>
+</div>

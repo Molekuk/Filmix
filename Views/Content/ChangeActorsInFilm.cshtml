@@ -1,7 +1,13 @@
 ﻿@model IEnumerable<Filmix.Models.FilmModels.ActorInFilmViewModel>
+@{
+    ViewBag.Title = $"Актеры фильма {ViewBag.Name}";
+}
 
-<h1>Добавление актеров для фильма @ViewBag.Name</h1>
+<div class="change_form">
+
+<h1>Изменение актеров фильма @ViewBag.Name</h1>
 <form method="post" asp-action="ChangeActorsInFilm" asp-controller="Content" asp-route-FilmId="@ViewBag.Id">
+    <div class="checkbox_container">
     @foreach(var actor in Model)
     {
         <div>
@@ -16,5 +22,10 @@
             <label for="@actor.ActorId">@actor.ActorName</label>
         </div>
     }
-    <input type="submit" value="Сохранить"/>
+    </div>
+    <input class="save_button" type="submit" value="Сохранить"/>
+
 </form>
+
+    <a class="form_back_button" asp-action="EditFilm" asp-controller="Content" asp-route-Id="@ViewBag.Id">Назад</a>
+    </div>
