@@ -46,6 +46,25 @@ namespace Filmix.Managers.Films
 
         }
 
+        public async Task<IEnumerable<FilmViewModel>> GetFilmsViewModelAsync(string filmname)
+        {
+            var films = await _context.Films
+            .Where(f=>f.Name.Contains(filmname))
+            .Select(f => new FilmViewModel
+            {
+                Id = f.Id,
+                Name = f.Name,
+                Year = f.Year,
+                Rating = f.Rating,
+                GenreNames = f.Genres.Select(g => g.Name),
+                Image = f.PosterImage
+            })
+            .ToListAsync();
+
+            return films;
+
+        }
+
         public async Task AddAsync(Film film)
         {
             _context.Films.Add(film);

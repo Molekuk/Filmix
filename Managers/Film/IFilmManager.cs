@@ -8,6 +8,8 @@ namespace Filmix.Managers.Films
     {
         Task<IEnumerable<FilmViewModel>> GetFilmsViewModelAsync(int minYear, int maxYear, int minRating, int maxRating);
 
+        Task<IEnumerable<FilmViewModel>> GetFilmsViewModelAsync(string filmname);
+
         Task<IEnumerable<Film>> GetFilmsAsync();
 
         Task<Film> FindAsync(int id);
