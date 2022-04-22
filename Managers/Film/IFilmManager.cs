@@ -6,7 +6,7 @@ namespace Filmix.Managers.Films
 {
     public interface IFilmManager
     {
-        Task<IEnumerable<FilmViewModel>> GetFilmsViewModelAsync();
+        Task<IEnumerable<FilmViewModel>> GetFilmsViewModelAsync(int minYear, int maxYear, int minRating, int maxRating);
 
         Task<IEnumerable<Film>> GetFilmsAsync();
 

@@ -7,7 +7,7 @@ namespace Filmix.Models.FilmModels
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public string Year { get; set; }
+        public int Year { get; set; }
 
         public decimal Rating { get; set; }
 

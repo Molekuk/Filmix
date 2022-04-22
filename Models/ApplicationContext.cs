@@ -17,9 +17,6 @@ namespace Filmix
             Database.EnsureCreated();
             
         }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-        }
-
+  
     }
 }

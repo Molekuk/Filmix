@@ -2,12 +2,11 @@
 using Filmix.Managers.Films;
 using Filmix.Managers.Genres;
 using Filmix.Models.FilmModels;
+using Filmix.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Net.Mail;
 using System.Threading.Tasks;
 
@@ -26,12 +25,14 @@ namespace Filmix.Controllers
             _actorManager = actorManager;
         }
 
-        public async Task<IActionResult> Index()
-        {
-            var films =  await _filmManager.GetFilmsViewModelAsync();
+        public async Task<IActionResult> Index(int minYear = 1940, int maxYear = 2023, int minRating = 0, int maxRating = 10)
+        {   
+            var films =  await _filmManager.GetFilmsViewModelAsync(minYear,maxYear,minRating,maxRating);
             return View(films);
         }
-        
+
+       
+
         public async Task<IActionResult> Film(int id)
         {
             var film = await _filmManager.FindAsync(id);
@@ -62,5 +63,7 @@ namespace Filmix.Controllers
             var genre = await _genreManager.FindAsync(id);
             return View(genre);
         }
+        
+        
     }
 }
