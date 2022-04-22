@@ -25,10 +25,19 @@ namespace Filmix.Controllers
             _actorManager = actorManager;
         }
 
-        public async Task<IActionResult> Index(int minYear = 1940, int maxYear = 2023, int minRating = 0, int maxRating = 10)
+
+        public async Task<IActionResult> Index(int minYear = 1940, int maxYear = 2023, int minRating = 0, int maxRating = 10,string filmName=null)
         {   
-            var films =  await _filmManager.GetFilmsViewModelAsync(minYear,maxYear,minRating,maxRating);
-            return View(films);
+            if(filmName == null)
+            {
+                var films = await _filmManager.GetFilmsViewModelAsync(minYear, maxYear, minRating, maxRating);
+                return View(films);
+            }
+            else
+            {
+                var films = await _filmManager.GetFilmsViewModelAsync(filmName);
+                return View(films);
+            }
         }
 
        

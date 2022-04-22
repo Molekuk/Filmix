@@ -178,12 +178,11 @@ header {
         border-width: 2px;
         margin-left: 10px;
         width: 100px;
-
 }
 
-.send_button {
+.filter_button {
     text-decoration: none;
-    width: 100px;
+    width: 150px;
     background: #83A7C9;
     border-color: black;
     border-style: solid;
@@ -195,14 +194,56 @@ header {
     text-decoration: none;
     color: #3a3eac;
     border-radius: 10px;
-    margin-left:10px;
     font-weight:bold;
+    margin-left:36px;
+    margin-top:5px;
 }
 
-    .send_button:hover {
+    .filter_button:hover {
         background: #5687b5;
         color: #a40000;
     }
+
+.find_container{
+    position:absolute;
+    right:0;
+    margin-top:5px;
+    margin-right:20px;
+}
+
+.input_name {
+    border-radius: 10px;
+    border-color: black;
+    border-style: solid;
+    border-width: 2px;
+    margin-left: 10px;
+    width: 200px;
+    height:30px
+}
+
+.find_button {
+    text-decoration: none;
+    width: 150px;
+    background: #83A7C9;
+    border-color: black;
+    border-style: solid;
+    border-width: 2px;
+    display: flex;
+    justify-content: center;
+    font-size: 16px;
+    transition: 0.5s;
+    text-decoration: none;
+    color: #3a3eac;
+    border-radius: 10px;
+    font-weight: bold;
+    margin-left: 36px;
+    margin-top: 5px;
+}
+
+.find_button:hover {
+        background: #5687b5;
+        color: #a40000;
+}
 /*#endregion*/
 /*#region Страница фильма*/
 .curr_film {
