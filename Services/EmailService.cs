@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using MimeKit;
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Threading.Tasks;
 using System.Web;
 
@@ -39,7 +40,7 @@ namespace Filmix.Services
             mimeMessage.From.Add(new MailboxAddress("Filmix", config.SmtpEmail));
             mimeMessage.To.Add(new MailboxAddress(" ", email));
             mimeMessage.Subject = "Подтверждение регистрации";
-            mimeMessage.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = $"<a href='https://localhost:44343/ConfirmEmail?token={token}&userId={userId}'>Для подтверждения регистрации нажмите сюда</a>" };
+            mimeMessage.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = $"<a style='font-size:30px;text-decoration:none;color:#b70c0c' href='https://localhost:44343/ConfirmEmail?token={token}&userId={userId}'>Для подтверждения регистрации нажмите сюда</a>" };
             
             try
             {
@@ -69,7 +70,7 @@ namespace Filmix.Services
             mimeMessage.From.Add(new MailboxAddress("Filmix", config.SmtpEmail));
             mimeMessage.To.Add(new MailboxAddress(" ", email));
             mimeMessage.Subject = "Ваша учетная запись успешно подтверждена!";
-            mimeMessage.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = $"<h1>Спасибо за регистрацию в Filmix!</h1>" };
+            mimeMessage.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = $"<h1 style='font-size:30px; color:#095b99'>Спасибо за регистрацию в Filmix!</h1>" };
 
             try
             {

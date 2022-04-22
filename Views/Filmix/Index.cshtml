@@ -3,11 +3,29 @@
     ViewBag.Title = "Filmix";
 }
 
+<form asp-action="Index" asp-controller="Filmix">
+    <div class="filter_container">
+     <div class="filter_elem">
+        <h1>Рейтинг</h1>
+        <input name="minRating" type="number" min="0" max="10" placeholder="от 0"/>
+        <input name="maxRating" type="number" min="0" max="10" placeholder="до 10"/>
+     </div>
 
+      <div class="filter_elem">
+        <h1>Год выхода</h1>
+        <input name="minYear" type="number" min="1940" max="2022" placeholder="от 1940"/>
+        <input name="maxYear" type="number"   min="1940" max="2022" placeholder="до 2022"/>
+     </div>
+
+     <input type="submit" class="send_button" value="Поиск"/>
+    </div>
+</form>
 <div class="film_str">
+
+
     @foreach(var film in Model)
     {
-         <div class="film_poster">
+    <div class="film_poster">
     <a asp-action="Film" asp-route-id="@film.Id">
         Подробнее
      </a>
@@ -21,7 +39,7 @@
                 </div>
 
                 <div class="film_genre">
-                    <p style="font-size: x-large">@film.Year</p>
+                    <p>@film.Year</p>
                     @foreach(var genre in film.GenreNames)
                     {
                         <p>@genre</p>

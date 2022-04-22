@@ -44,7 +44,7 @@ namespace Filmix.Models.FilmModels
         public decimal Rating { get; set; }
 
         [Display(Name = "Год")]
-        public string Year { get; set; }
+        public int Year { get; set; }
 
         public  List<Genre> Genres { get; set; }
 

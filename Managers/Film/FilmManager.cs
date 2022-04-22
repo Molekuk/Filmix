@@ -26,17 +26,24 @@ namespace Filmix.Managers.Films
             return await _context.Films.Include(f=>f.Actors).Include(f=>f.Genres).ToListAsync();
         }
 
-        public async Task<IEnumerable<FilmViewModel>> GetFilmsViewModelAsync()
+        public async Task<IEnumerable<FilmViewModel>> GetFilmsViewModelAsync(int minYear, int maxYear, int minRating, int maxRating)
         {
-            return await _context.Films.Select(f=>new FilmViewModel
+            var films = await _context.Films
+            .Where(f => (f.Year >= minYear) && (f.Year <= maxYear))
+            .Where(f => (f.Rating >= minRating) && (f.Rating <= maxRating))
+            .Select(f => new FilmViewModel
             {
                 Id = f.Id,
                 Name = f.Name,
                 Year = f.Year,
                 Rating = f.Rating,
-                GenreNames = f.Genres.Select(g=>g.Name), 
-                Image =f.PosterImage
-            }).ToListAsync();
+                GenreNames = f.Genres.Select(g => g.Name),
+                Image = f.PosterImage
+            })
+            .ToListAsync();
+
+            return films;
+
         }
 
         public async Task AddAsync(Film film)
