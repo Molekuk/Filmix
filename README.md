@@ -11,3 +11,4 @@ Web applications for watching movies
   <li>Mailkit</li>
   <li>ASP.NET Core Identity</li>
 </ul>
+<h4>Database: MS SQL Server</h4>
