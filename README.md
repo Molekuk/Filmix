@@ -1,5 +1,5 @@
 # Filmix
-Web applications for watching movies
+Web application for watching movies
 <h3>Technology stack</h3>
 <ul>
   <li>ASP.NET Core MVC</li>
