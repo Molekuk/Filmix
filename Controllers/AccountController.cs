@@ -39,7 +39,7 @@ namespace Filmix.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _accountManager.Register(model);
+                var result = await _accountManager.RegisterAsync(model);
                 if (result.Succeeded)
                 {
 
@@ -87,7 +87,7 @@ namespace Filmix.Controllers
         {
             if(ModelState.IsValid)
             {
-                var result = await _accountManager.SignIn(model);
+                var result = await _accountManager.SignInAsync(model);
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Index", "Filmix");
@@ -106,7 +106,7 @@ namespace Filmix.Controllers
         [Authorize]
         public async Task<IActionResult> Logout()
         {
-            await _accountManager.SignOut();
+            await _accountManager.SignOutAsync();
             return RedirectToAction("Index", "Filmix");
         }
     }

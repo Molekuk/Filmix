@@ -6,13 +6,13 @@ namespace Filmix.Managers.Account
 {
     public interface IAccountManager
     {
-        Task<ActionResult> Register(RegisterViewModel model);
+        Task<SignResult> RegisterAsync(RegisterViewModel model);
 
-        Task<ActionResult> ConfirmEmailAsync(string userId, string token);
-        Task<ActionResult> SignIn(LoginViewModel model);
+        Task<SignResult> ConfirmEmailAsync(string userId, string token);
+        Task<SignResult> SignInAsync(LoginViewModel model);
 
         Task<string> GetUserEmailAsync(string userId);
-        Task SignOut();
+        Task SignOutAsync();
 
     }
 }

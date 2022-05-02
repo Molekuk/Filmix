@@ -24,10 +24,10 @@ namespace Filmix.Managers.Account
             RoleManager = roleManager;
         }
 
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<SignResult> RegisterAsync(RegisterViewModel model)
         {
             User user = new User {Email=model.Email,UserName=model.Name};
-            ActionResult userResult = new ActionResult();
+            SignResult userResult = new SignResult();
 
             if ( (await _userManager.FindByEmailAsync(model.Email))!=null)
             {
@@ -59,9 +59,9 @@ namespace Filmix.Managers.Account
 
         }
 
-        public async Task<ActionResult> SignIn(LoginViewModel model)
+        public async Task<SignResult> SignInAsync(LoginViewModel model)
         {
-            ActionResult userResult = new ActionResult();
+            SignResult userResult = new SignResult();
             var user = _userManager.Users.FirstOrDefault(u => u.UserName == model.Login||u.Email==model.Login);
 
             if (user != null)
@@ -89,14 +89,14 @@ namespace Filmix.Managers.Account
         }
 
         
-        public async Task SignOut()
+        public async Task SignOutAsync()
         {
             await _signInManager.SignOutAsync();
         }
 
-        public async Task<ActionResult> ConfirmEmailAsync(string userId, string token)
+        public async Task<SignResult> ConfirmEmailAsync(string userId, string token)
         {
-            ActionResult userResult = new ActionResult();
+            SignResult userResult = new SignResult();
             if (userId == null || token == null)
             {
                 userResult.Succeeded = false;
