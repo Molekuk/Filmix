@@ -244,6 +244,8 @@ header {
         background: #5687b5;
         color: #a40000;
 }
+
+
 /*#endregion*/
 /*#region Страница фильма*/
 .curr_film {
@@ -319,6 +321,8 @@ header {
 .curr_film_rating {
     position: absolute;
     display: flex;
+    justify-content:space-between;
+    width:200px;
     font-weight: bold;
     font-size: 30px;
     color: #dcdcdc;

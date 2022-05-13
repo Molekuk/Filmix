@@ -8,18 +8,12 @@ namespace Filmix.Managers.Genres
     public interface IGenreManager
     {
         Task<IEnumerable<Genre>> GetGenresAsync();
-
         Task<IEnumerable<GenreViewModel>> GetGenresViewModelAsync();
-
         Task<Genre> FindAsync(int id);
-
         Task AddAsync(Genre genre);
-
         Task UpdateAsync(Genre genre);
         Task DeleteAsync(int id);
-
         Task AddFilmsToGenreAsync(int GenreId, IList<int> FilmIdList);
-
-        public Task<IEnumerable<FilmInGenreViewModel>> GetFilmsInGenre(Genre genre);
+        Task<IEnumerable<FilmInGenreViewModel>> GetFilmsInGenre(Genre genre);
     }
 }

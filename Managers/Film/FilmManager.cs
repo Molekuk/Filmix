@@ -39,7 +39,7 @@ namespace Filmix.Managers.Films
                 Rating = f.Rating,
                 GenreNames = f.Genres.Select(g => g.Name),
                 Image = f.PosterImage
-            })
+            }).OrderByDescending(f => f.Rating)
             .ToListAsync();
 
             return films;
