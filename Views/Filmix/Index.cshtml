@@ -54,9 +54,10 @@
 
                 <div class="film_genre">
                     <p>@film.Year</p>
-                    @foreach(var genre in film.GenreNames)
+                    <p>@film.GenreNames.First()</p>
+                    @if(film.GenreNames.Count()>1)
                     {
-                        <p>@genre</p>
+                        <p>@film.GenreNames.Last()</p>
                     }
                 </div>
             </div>

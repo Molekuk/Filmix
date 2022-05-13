@@ -12,7 +12,7 @@
     <a asp-action="Film" asp-route-id="@film.Id">
         Подробнее
      </a>
-        <img class="film_img" src="~/img/Films/@film.PosterImage">
+        <img class="film_img" src="~/img/Films/Poster/@film.PosterImage">
 
             <div class="film_description">
                 <div class="film_name">
@@ -22,10 +22,11 @@
                 </div>
 
                 <div class="film_genre">
-                    <p style="font-size: x-large">@film.Year</p>
-                    @foreach(var genre in film.Genres)
+                    <p>@film.Year</p>
+                    <p>@film.Genres.First().Name</p>
+                    @if(film.Genres.Count()>1)
                     {
-                        <p>@genre.Name</p>
+                        <p>@film.Genres.Last().Name</p>
                     }
                 </div>
             </div>

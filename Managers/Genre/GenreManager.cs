@@ -17,7 +17,7 @@ namespace Filmix.Managers.Genres
 
         public async Task<Genre> FindAsync(int id)
         {
-            return await _context.Genres.Include(g=>g.Films).FirstOrDefaultAsync(g=>g.Id==id);
+            return await _context.Genres.Include(g=>g.Films).ThenInclude(f=>f.Genres).FirstOrDefaultAsync(g=>g.Id==id);
         }
         public async Task AddAsync(Genre genre)
         {

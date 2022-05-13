@@ -56,9 +56,6 @@ namespace Filmix.Controllers
             return View(model);
         }
 
-
-
-
         [HttpGet]
         [Route("/Login")]
         public IActionResult Login()

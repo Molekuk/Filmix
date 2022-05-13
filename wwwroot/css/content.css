@@ -1,7 +1,8 @@
 ﻿body {
     background: url(/img/content_background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
     font-family: 'Roboto', sans-serif;
-    
 }
 
 /*#region Главная*/
